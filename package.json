@@ -1,0 +1,22 @@
+{
+  "name": "talq",
+  "description": "A communication platform built with React and GraphQL",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "homepage": "https://github.com/joealden/talq",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joealden/talq.git"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^6.1.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  }
+}
