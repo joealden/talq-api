@@ -83,8 +83,75 @@ chats members.
 
 ### Data Plan
 
-placeholder
+Shown in `schema.gql` written in GraphQL SDL.
 
 ### Feature Plan
 
-placeholder
+#### Base Feature Set
+
+- Allow users to create and login to their accounts
+- Allow users to add friends by searching for their email
+  - Allow users to remove friends as well
+  - Start by not requiring other user added to accept
+  - Eventually switch so that searched by name + image
+- Allow users to create chats with user that are their friends
+  - Can be with one or more people (possibly limit)
+- Allow users to create messages within a chat
+  - Messages that are sent by the user themselves are put on the right side of
+    the screen in a blue bubble to indicate that they sent it
+  - Messages that are sent by users other than themselves are put on the left
+    side of the screen in a grey bubble along with their name above the message.
+    If a user sends consecutive messages, collect them together and only display
+    their name at the top of the first message in the consecutive list.
+- Allow users to change their settings (name, email etc.)
+  - Eventually require them to verify
+    - Name change requires password verification
+    - Email + password change requires email sent link + password verification
+- Make is so that chats and sidebar live update when other chat member has sent
+  a message
+- Make it so that the user can change theme (Light / dark mode), changing:
+  - Background color
+  - Possibly icon colors
+  - Text
+  - Bubble colors
+- Implement paging, both for sidebar and chat
+  - In sidebar, load first 15 / 20 chats
+    - When user scrolls down, load the next 10 / 15 / 20 chats
+  - In chat, load first 20 / 25 messages
+    - When user scrolls up, load previous 20 / 25 message
+- When another user sends a message in a chat, if a user is already scrolled to
+  the bottom of the chat, scroll the user to the bottom of the chat when the
+  message has been recieved. Do not scroll the user when they have scrolled to
+  somewhere that is not at the bottom.
+  - Do the same for the sidebar, if they are at the top of the sidebar and
+    someone in another chat sends a message, move the sidebar location to the
+    top so that the user can see that a new message has been sent.
+- Allow the user to search in the sidebar (with an search bar at the top) for
+  chats. This will search for the chat title / the members of the chat.
+- When a user sends a message, use optimistic updates to add new message to
+  chat, then add some kind of indicator to tell the user that the message was
+  actually sent (bubble color change / check mark etc.)
+- In sidebar, if most recent message in a chat was posted by you, prepend "You:"
+  to the start of the message
+
+#### Extra Feature Set
+
+- Allow users to reset password without being logged in if they have forgot it
+  - Requires email sent link verification
+- Allow users to reset email without being logged in if they have forgot it
+  - Requires more checks to be made to ensure that it is them
+  - Maybe security questions?
+  - Maybe recovery email that added during signup phase
+- Add 'seen' message when another member has seen a message
+- Allow users to create their own themes
+- Add voice / video calls (with WebRTC)
+- Allow people to add people / remove themselves from a chat
+  - Handle case where only two people are in a chat
+  - Possibly implement chat admins (Can remove / add anyone)
+    - Regular users would only be able to remove themselves
+- Make a block list
+  - Other users cannot create a chat with you if you have blocked them
+  - Blocking a user will automatically remove them from a users friends list
+  - You will not be able to see them when searching for new friends
+- Allow searching in a chat
+- Make chat bold in sidebar when the user has not read the message
