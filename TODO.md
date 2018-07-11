@@ -12,5 +12,6 @@
   - Get typescript set up on API (Then think of adding to client)
   - Look into subscriptions
 - Add custom Apollo install to client with subscription support
+  - https://www.apollographql.com/docs/react/advanced/boost-migration.html
   - Connect to API
   - Test normal query + live query in sidebar
