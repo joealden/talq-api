@@ -45,13 +45,13 @@ const StyledNewChatIcon = styled(NewChatIcon)`
 
 const Toolbar = () => (
   <ToolbarWrapper>
-    <Link href="/settings">
+    <Link prefetch href="/settings">
       <a>
         <StyledSettingsIcon />
       </a>
     </Link>
     <h1>Talq</h1>
-    <Link href="/new">
+    <Link prefetch href="/new">
       <a>
         <StyledNewChatIcon />
       </a>
