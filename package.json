@@ -10,10 +10,14 @@
     "url": "git+https://github.com/joealden/talq.git"
   },
   "scripts": {
+    "client:add": "cd client; yarn add $1",
     "client:build": "cd client; yarn build",
     "client:dev": "cd client; yarn dev",
     "client:install": "cd client; yarn",
+    "client:remove": "cd client; yarn remove $1",
     "client:start": "cd client; yarn start",
-    "api:install": "cd api; yarn"
+    "server:add": "cd server; yarn add $1",
+    "server:install": "cd server; yarn",
+    "server:remove": "cd server; yarn remove $1"
   }
 }

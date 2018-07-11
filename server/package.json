@@ -1,6 +1,6 @@
 {
-  "name": "talq-api",
-  "description": "Talq API",
+  "name": "talq-server",
+  "description": "Talq Server",
   "private": true,
   "scripts": {},
   "dependencies": {}
