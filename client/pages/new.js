@@ -1,10 +1,10 @@
 import React from "react";
 import Layout from "../components/layout";
 
-const SettingsPage = () => (
+const NewChatPage = () => (
   <Layout>
-    <div>Settings Page</div>
+    <div>New Chat Page</div>
   </Layout>
 );
 
-export default SettingsPage;
+export default NewChatPage;

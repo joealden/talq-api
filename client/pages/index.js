@@ -1,15 +1,10 @@
-import Link from "next/link";
+import React from "react";
+import Layout from "../components/layout";
 
-const Home = () => (
-  <div>
-    <Link href="/">
-      <a>Home Page</a>
-    </Link>
-    <Link href="/about">
-      <a>About Page</a>
-    </Link>
-    <p>Hello Next.js</p>
-  </div>
+const HomePage = () => (
+  <Layout>
+    <div>Home Page</div>
+  </Layout>
 );
 
-export default Home;
+export default HomePage;
