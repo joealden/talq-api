@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Sidebar from "./Sidebar";
-import constants from "../../utils/constants";
+import Main from "./Main";
 
 const Page = styled.div`
   display: grid;
@@ -11,22 +11,10 @@ const Page = styled.div`
   height: 100%;
 `;
 
-const Main = styled.main`
-  grid-area: "main";
-  background-color: white;
-  border-left: ${constants.borderVertical};
-
-  /* Temp */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-`;
-
-const Layout = ({ children }) => (
+const Layout = ({ mainTitle, children }) => (
   <Page>
     <Sidebar />
-    <Main>{children}</Main>
+    <Main title={mainTitle}>{children}</Main>
   </Page>
 );
 

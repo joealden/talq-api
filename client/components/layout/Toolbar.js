@@ -23,7 +23,7 @@ const ToolbarWrapper = styled.div`
   }
 
   h1 {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: normal;
   }
 `;
