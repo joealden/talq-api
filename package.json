@@ -16,8 +16,8 @@
     "client:install": "cd client; yarn",
     "client:remove": "cd client; yarn remove $1",
     "client:start": "cd client; yarn start",
-    "server:add": "cd server; yarn add $1",
-    "server:install": "cd server; yarn",
-    "server:remove": "cd server; yarn remove $1"
+    "api:add": "cd api; yarn add $1",
+    "api:install": "cd api; yarn",
+    "api:remove": "cd api; yarn remove $1"
   }
 }
