@@ -1,0 +1,7 @@
+{
+  "name": "talq-api",
+  "description": "Talq API",
+  "private": true,
+  "scripts": {},
+  "dependencies": {}
+}
