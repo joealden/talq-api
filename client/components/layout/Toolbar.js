@@ -47,7 +47,7 @@ const StyledNewChatIcon = styled(NewChatIcon)`
  * TODO: Look into stopping auto scroll to top
  * when settings / new-chat is pressed. Already
  * tried scroll={false} on links, doesn't work.
-*/
+ */
 const Toolbar = () => (
   <ToolbarWrapper>
     <Link prefetch href="/settings">

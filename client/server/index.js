@@ -18,7 +18,7 @@ app
       res.redirect("/chat");
     });
 
-    // Handle "/chat/" case - currently shows a 404 page
+    /* Handle "/chat/" case - currently shows a 404 page */
     server.get("/chat/:id", (req, res) => {
       const queryParams = { id: req.params.id };
       app.render(req, res, "/chat", queryParams);

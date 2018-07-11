@@ -9,7 +9,7 @@ const ChatWrapper = styled.div`
   align-items: center;
 `;
 
-// Remember to handle case where id is not defined (redirect)
+/* Remember to handle case where id is not defined (redirect) */
 const ChatPage = ({ router }) => {
   const chatId = router.query.id || "Not defined, needs redirecting!";
 
