@@ -83,7 +83,7 @@ chats members.
 
 ### Data Plan
 
-Shown in `api/schema.gql` written in GraphQL SDL.
+Shown in `api/__schema.gql` written in GraphQL SDL.
 
 ### Feature Plan
 
