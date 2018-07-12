@@ -13,7 +13,7 @@ Build a Facebook Messenger clone with the following technologies and tools:
 - React (Using a high level context provider to give login info)
 - Next.js (For file based routing and easy SSR)
 - Apollo client (To interface with the API)
-- Emotion (For Styling)
+- Styled Components (For Styling and theming)
 
 #### API
 
