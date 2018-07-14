@@ -1,3 +1,6 @@
+# API Ideas
+
+```graphql
 # Images may need to be stored externally on a service
 # like AWS S3 when implemented.
 
@@ -42,3 +45,4 @@ type Message {
   # sending is implemented.
   content: String!
 }
+```

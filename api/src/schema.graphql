@@ -1,0 +1,34 @@
+# import User from './generated/prisma.graphql'
+# import Chat from './generated/prisma.graphql'
+# import Message from './generated/prisma.graphql'
+
+type Name {
+  firstName: String!
+  lastName: String!
+}
+
+type Query {
+  userFriends(userId: ID!): [User]
+  userName(userId: ID!): Name
+  chat(chatId: ID!): Chat
+}
+
+type Mutation {
+  signup(
+    email: String!
+    firstName: String!
+    lastName: String!
+    password: String!
+  ): User
+  signin(email: String!, password: String!): User
+  addFriend(userId: ID!, friendId: ID!): User
+  changeUserName(userId: ID!, name: Name!): User
+  # Think about verification, maybe add pass arg / email verification?
+  changeUserEmail(userId: ID!, email: String!): User
+  # members = Array of user (friend) IDs
+  # title = Optional chat title
+  startChat(members: [ID!]!, title: String): Chat
+  updateChatTitle(id: ID!, title: String!): Chat
+  addMembersToChat(chatId: ID!): Chat
+  sendMessageToChat(chatId: ID!, content: String!): Message
+}
