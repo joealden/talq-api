@@ -14,8 +14,17 @@ app
 
     /* ----------------- Custom Routes ----------------- */
 
+    /*
+     * Temp until implement client side redirect switch 
+     * on login state
+     */
     server.get("/", (_req, res) => {
       res.redirect("/chat");
+    });
+
+    /* Redirect due to common route name */
+    server.get("/login", (_req, res) => {
+      res.redirect("/signin");
     });
 
     /* Handle "/chat/" case - currently shows a 404 page */
