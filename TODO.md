@@ -1,6 +1,7 @@
 # TODO
 
-- Start working on the API side
+- Continue working on the API side
+  - https://www.prisma.io/docs/tutorials/-ohdaiyoo6c#step-5:-instantiate-the-prisma-binding
   - Should the generated prisma file in src be checked into version control?
   - https://github.com/prismagraphql/graphql-config
   - Add vscode folder with plugin recommendations:
