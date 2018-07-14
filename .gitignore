@@ -1,11 +1,11 @@
 # Dependencies
-server/node_modules
+api/node_modules
 client/node_modules
 # Incase someone attempts to install deps at top level
 /node_modules
 /yarn.lock
 # Incase someone installs deps via npm not yarn
-server/package-lock.json
+api/package-lock.json
 client/package-lock.json
 /package-lock.json
 
