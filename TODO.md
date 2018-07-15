@@ -1,7 +1,7 @@
 # TODO
 
 - Continue working on the API side
-  - Start implementing resolvers
+  - Start implementing resolvers (Dummy resolvers already done)
   - Get typescript set up on API (Then think of adding to client)
   - Look into subscriptions
   - Use GraphQL Shield: https://github.com/maticzav/graphql-shield

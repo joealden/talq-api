@@ -1,115 +1,70 @@
 const { GraphQLServer } = require("graphql-yoga");
 const { Prisma } = require("prisma-binding");
 
+const dummyUser = {
+  id: "cjjlmquwscq4m0b22qc5tqfwh",
+  email: "test@test.com",
+  firstName: "first",
+  lastName: "last",
+  friends: []
+};
+
+const dummyChat = {
+  id: "cjjlmquwscq4m0b22qc5tqfwh",
+  title: "test title",
+  members: [],
+  messages: []
+};
+
+const dummyMessage = {
+  id: dummyUser.id,
+  author: dummyUser,
+  createdAt: "test date",
+  content: "test content"
+};
+
 const resolvers = {
   Query: {
     userFriends: (_, args, context, info) => {
-      return [
-        {
-          id: "cjjlmquwscq4m0b22qc5tqfwh",
-          email: "test@test.com",
-          firstName: "first",
-          lastName: "last",
-          friends: []
-        }
-      ];
+      return [dummyUser];
     },
     userName: (_, args, context, info) => {
       return {
-        firstName: "first",
-        lastName: "last"
+        firstName: dummyUser.firstName,
+        lastName: dummyUser.lastName
       };
     },
     chat: (_, args, context, info) => {
-      return {
-        id: "cjjlmquwscq4m0b22qc5tqfwh",
-        title: "test title",
-        members: [],
-        messages: []
-      };
+      return dummyChat;
     }
   },
   Mutation: {
     signup: (_, args, context, info) => {
-      return {
-        id: "cjjlmquwscq4m0b22qc5tqfwh",
-        email: "test@test.com",
-        firstName: "first",
-        lastName: "last",
-        friends: []
-      };
+      return [dummyUser];
     },
     signin: (_, args, context, info) => {
-      return {
-        id: "cjjlmquwscq4m0b22qc5tqfwh",
-        email: "test@test.com",
-        firstName: "first",
-        lastName: "last",
-        friends: []
-      };
+      return [dummyUser];
     },
     addFriend: (_, args, context, info) => {
-      return {
-        id: "cjjlmquwscq4m0b22qc5tqfwh",
-        email: "test@test.com",
-        firstName: "first",
-        lastName: "last",
-        friends: []
-      };
+      return [dummyUser];
     },
     changeUserName: (_, args, context, info) => {
-      return {
-        id: "cjjlmquwscq4m0b22qc5tqfwh",
-        email: "test@test.com",
-        firstName: "first",
-        lastName: "last",
-        friends: []
-      };
+      return [dummyUser];
     },
     changeUserEmail: (_, args, context, info) => {
-      return {
-        id: "cjjlmquwscq4m0b22qc5tqfwh",
-        email: "test@test.com",
-        firstName: "first",
-        lastName: "last",
-        friends: []
-      };
+      return [dummyUser];
     },
     startChat: (_, args, context, info) => {
-      return {
-        id: "cjjlmquwscq4m0b22qc5tqfwh",
-        title: "test title",
-        members: [],
-        messages: []
-      };
+      return dummyUser;
     },
     updateChatTitle: (_, args, context, info) => {
-      return {
-        id: "cjjlmquwscq4m0b22qc5tqfwh",
-        title: "test title",
-        members: [],
-        messages: []
-      };
+      return dummyUser;
     },
     addMembersToChat: (_, args, context, info) => {
-      return {
-        id: "cjjlmquwscq4m0b22qc5tqfwh",
-        title: "test title",
-        members: [],
-        messages: []
-      };
+      return dummyUser;
     },
     sendMessageToChat: (_, args, context, info) => {
-      return {
-        id: "cjjlmquwscq4m0b22qc5tqfwh",
-        author: {
-          id: "cjjlmquwscq4m0b22qc5tqfwh",
-          email: "test@test.com",
-          firstName: "first",
-          lastName: "last",
-          friends: []
-        }
-      };
+      return dummyMessage;
     }
   }
 };
@@ -125,6 +80,7 @@ const server = new GraphQLServer({
     })
   })
 });
+
 server.start(() =>
   console.log(`GraphQL server is running on http://localhost:4000`)
 );
