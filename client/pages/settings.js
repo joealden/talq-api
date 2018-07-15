@@ -1,12 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Layout from "../components/layout";
 
-const SettingsWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import Layout from "../components/layout";
 
 const SettingsPage = () => (
   <Layout mainTitle="Settings">
@@ -15,3 +10,9 @@ const SettingsPage = () => (
 );
 
 export default SettingsPage;
+
+const SettingsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

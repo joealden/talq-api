@@ -1,13 +1,8 @@
 import React from "react";
 import { withRouter } from "next/router";
 import styled from "styled-components";
-import Layout from "../components/layout";
 
-const ChatWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import Layout from "../components/layout";
 
 /* Remember to handle case where id is not defined (redirect) */
 const ChatPage = ({ router }) => {
@@ -21,3 +16,9 @@ const ChatPage = ({ router }) => {
 };
 
 export default withRouter(ChatPage);
+
+const ChatWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

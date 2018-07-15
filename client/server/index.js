@@ -44,7 +44,7 @@ app
       console.log(`> Ready on http://localhost:${port}`);
     });
   })
-  .catch(ex => {
-    console.error(ex.stack);
+  .catch(error => {
+    console.error(error.stack);
     process.exit(1);
   });

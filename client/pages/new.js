@@ -1,12 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Layout from "../components/layout";
 
-const ChatWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import Layout from "../components/layout";
 
 const NewChatPage = () => (
   <Layout mainTitle="New Chat">
@@ -15,3 +10,9 @@ const NewChatPage = () => (
 );
 
 export default NewChatPage;
+
+const ChatWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

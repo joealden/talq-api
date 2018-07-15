@@ -6,6 +6,29 @@ import constants from "../../utils/constants";
 import SettingsIcon from "../icons/SettingsIcon";
 import NewChatIcon from "../icons/NewChatIcon";
 
+/* 
+ * TODO: Look into stopping auto scroll to top
+ * when settings / new-chat is pressed. Already
+ * tried scroll={false} on links, doesn't work.
+ */
+const Toolbar = () => (
+  <ToolbarWrapper>
+    <Link prefetch href="/settings">
+      <a>
+        <StyledSettingsIcon />
+      </a>
+    </Link>
+    <h1>Talq</h1>
+    <Link prefetch href="/new">
+      <a>
+        <StyledNewChatIcon />
+      </a>
+    </Link>
+  </ToolbarWrapper>
+);
+
+export default Toolbar;
+
 const ToolbarWrapper = styled.div`
   background-color: white;
   border-bottom: ${constants.borderHorizontal};
@@ -42,26 +65,3 @@ const StyledSettingsIcon = styled(SettingsIcon)`
 const StyledNewChatIcon = styled(NewChatIcon)`
   ${iconStyles};
 `;
-
-/* 
- * TODO: Look into stopping auto scroll to top
- * when settings / new-chat is pressed. Already
- * tried scroll={false} on links, doesn't work.
- */
-const Toolbar = () => (
-  <ToolbarWrapper>
-    <Link prefetch href="/settings">
-      <a>
-        <StyledSettingsIcon />
-      </a>
-    </Link>
-    <h1>Talq</h1>
-    <Link prefetch href="/new">
-      <a>
-        <StyledNewChatIcon />
-      </a>
-    </Link>
-  </ToolbarWrapper>
-);
-
-export default Toolbar;

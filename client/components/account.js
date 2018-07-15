@@ -2,18 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import constants from "../utils/constants";
 
-export const AccountPageHeader = () => (
+const AccountPageHeader = () => (
   <React.Fragment>
     <h1>Talq</h1>
     <h2>A Facebook Messenger Clone</h2>
   </React.Fragment>
 );
 
-export const AccountPageWrapper = ({ children }) => (
+const AccountPageWrapper = ({ children }) => (
   <Main>
     <AccountPageWrapperInternal>{children}</AccountPageWrapperInternal>
   </Main>
 );
+
+export default {
+  AccountPageHeader,
+  AccountPageWrapper
+};
 
 const Main = styled.main`
   display: flex;
