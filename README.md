@@ -155,3 +155,13 @@ Shown in `api/__schema.gql` written in GraphQL SDL.
   - You will not be able to see them when searching for new friends
 - Allow searching in a chat
 - Make chat bold in sidebar when the user has not read the message
+- Make the friendship system work like Facebook
+  - Where when a user goes to add a friend, they make a request
+  - The user they made a request to can either accept or decline it
+  - If they accept it, a friendship is created
+  - This means that for both of them, the other user is added to their friends
+    list
+  - Create new Prisma type of `Friendship` that has the following fields:
+    - id: ID! @unique
+    - friend1Id: ID!
+    - friend2Id: ID!
