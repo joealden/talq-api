@@ -1,5 +1,11 @@
 # TODO
 
+- Add ESLint config to project root for editor
+  - https://github.com/withspectrum/spectrum/blob/alpha/.eslintrc.js
+- Add .editorconfig at root
+- Add .prettierrc at root
+- Add precommit hooks with husky etc. for prettier and eslint
+  - Look at corum repo(s) for how to do this
 - Continue working on the API side
   - Configure Prisma service to use a secret for auth
     - This will disallow the Prisma service endpoint to be accessed by
@@ -25,12 +31,6 @@
       - changeUserName - (only user of userId can perform)
       - changeUserEmail - (only user of userId can perform)
       - startChat - (user must be signed in)
-- Add ESLint config to project root for editor
-  - https://github.com/withspectrum/spectrum/blob/alpha/.eslintrc.js
-- Add .editorconfig at root
-- Add .prettierrc at root
-- Add precommit hooks with husky etc. for prettier and eslint
-  - Look at corum repo(s) for how to do this
 - Add custom Apollo install to client with subscription support
   - https://www.apollographql.com/docs/react/advanced/boost-migration.html
   - Connect to API
