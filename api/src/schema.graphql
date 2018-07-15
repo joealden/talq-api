@@ -1,6 +1,14 @@
-# import User from './generated/prisma.graphql'
 # import Chat from './generated/prisma.graphql'
 # import Message from './generated/prisma.graphql'
+
+# Define type User with password field removed
+type User {
+  id: ID!
+  email: String!
+  firstName: String!
+  lastName: String!
+  friends: [User!]!
+}
 
 type Name {
   firstName: String!
