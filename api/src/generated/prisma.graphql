@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/joe-alden-e4ab2a/talq-api/dev
-# timestamp: Sat Jul 14 2018 18:27:08 GMT+0100 (BST)
+# timestamp: Sun Jul 15 2018 15:50:10 GMT+0100 (BST)
 
 type AggregateChat {
   count: Int!
@@ -540,7 +540,6 @@ type User implements Node {
   email: String!
   firstName: String!
   lastName: String!
-  test: String!
   password: String!
   friends(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
 }
@@ -559,7 +558,6 @@ input UserCreateInput {
   email: String!
   firstName: String!
   lastName: String!
-  test: String!
   password: String!
   friends: UserCreateManyInput
 }
@@ -592,8 +590,6 @@ enum UserOrderByInput {
   firstName_DESC
   lastName_ASC
   lastName_DESC
-  test_ASC
-  test_DESC
   password_ASC
   password_DESC
   updatedAt_ASC
@@ -607,7 +603,6 @@ type UserPreviousValues {
   email: String!
   firstName: String!
   lastName: String!
-  test: String!
   password: String!
 }
 
@@ -654,7 +649,6 @@ input UserUpdateDataInput {
   email: String
   firstName: String
   lastName: String
-  test: String
   password: String
   friends: UserUpdateManyInput
 }
@@ -663,7 +657,6 @@ input UserUpdateInput {
   email: String
   firstName: String
   lastName: String
-  test: String
   password: String
   friends: UserUpdateManyInput
 }
@@ -870,46 +863,6 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   lastName_not_ends_with: String
-  test: String
-
-  """All values that are not equal to given value."""
-  test_not: String
-
-  """All values that are contained in given list."""
-  test_in: [String!]
-
-  """All values that are not contained in given list."""
-  test_not_in: [String!]
-
-  """All values less than the given value."""
-  test_lt: String
-
-  """All values less than or equal the given value."""
-  test_lte: String
-
-  """All values greater than the given value."""
-  test_gt: String
-
-  """All values greater than or equal the given value."""
-  test_gte: String
-
-  """All values containing the given string."""
-  test_contains: String
-
-  """All values not containing the given string."""
-  test_not_contains: String
-
-  """All values starting with the given string."""
-  test_starts_with: String
-
-  """All values not starting with the given string."""
-  test_not_starts_with: String
-
-  """All values ending with the given string."""
-  test_ends_with: String
-
-  """All values not ending with the given string."""
-  test_not_ends_with: String
   password: String
 
   """All values that are not equal to given value."""

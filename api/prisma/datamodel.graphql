@@ -3,7 +3,6 @@ type User {
   email: String! @unique
   firstName: String!
   lastName: String!
-  test: String!
   password: String!
   friends: [User!]!
 }
