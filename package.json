@@ -12,9 +12,11 @@
   "scripts": {
     "client:build": "cd client; yarn build",
     "client:dev": "cd client; yarn dev",
-    "client:install": "cd client; yarn",
+    "client:clean": "./scripts/clean.sh client",
+    "client:install": "yarn client:clean; cd client; yarn",
     "client:start": "cd client; yarn start",
-    "api:install": "cd api; yarn",
+    "api:clean": "./scripts/clean.sh api",
+    "api:install": "yarn api:clean; cd api; yarn",
     "api:prisma:deploy": "cd api; yarn prisma:deploy"
   }
 }
