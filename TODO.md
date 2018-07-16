@@ -1,11 +1,5 @@
 # TODO
 
-- Add ESLint config to project root for editor
-  - https://github.com/withspectrum/spectrum/blob/alpha/.eslintrc.js
-- Add .editorconfig at root
-- Add .prettierrc at root
-- Add precommit hooks with husky etc. for prettier and eslint
-  - Look at corum repo(s) for how to do this
 - Continue working on the API
   - Configure Prisma service to use a secret for auth
     - This will disallow the Prisma service endpoint to be accessed by
@@ -31,5 +25,8 @@
       - changeUserName - (only user of userId can perform)
       - changeUserEmail - (only user of userId can perform)
       - startChat - (user must be signed in)
+- Add TSLint?
+- Add precommit hooks with husky etc. for prettier and TSLint?
+  - Look at corum repo(s) for how to do this
 - Add now.json
 - Look into setting up circleCI
