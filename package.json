@@ -12,12 +12,22 @@
   "scripts": {
     "clean": "./scripts/clean.sh",
     "fetch-prisma-schema": "graphql get-schema -p prisma",
-    "prisma:deploy": "prisma deploy"
+    "dev": "nodemon -e ts,graphql -x ts-node -r dotenv/config src/index.ts",
+    "build": "./scripts/buildClean.sh && graphql codegen && tsc",
+    "prisma": "prisma",
+    "playground": "graphql playground"
   },
   "dependencies": {
-    "graphql-cli": "^2.16.4",
+    "graphql": "^0.13.2",
     "graphql-yoga": "^1.14.12",
-    "prisma": "^1.11.1",
     "prisma-binding": "^2.1.0"
+  },
+  "devDependencies": {
+    "dotenv": "^6.0.0",
+    "graphql-cli": "^2.16.4",
+    "nodemon": "^1.18.2",
+    "prisma": "^1.11.1",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2"
   }
 }

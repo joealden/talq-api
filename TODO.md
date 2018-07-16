@@ -1,5 +1,6 @@
 # TODO
 
+- https://github.com/prismagraphql/graphql-server-example
 - Continue working on the API
   - Configure Prisma service to use a secret for auth
     - This will disallow the Prisma service endpoint to be accessed by
@@ -11,7 +12,6 @@
       - https://www.npmjs.com/package/dotenv#preload - might require using
         preload technique is using typescript
   - Start implementing resolvers (Dummy resolvers already done)
-  - Get typescript set up on client
   - Look into subscriptions on both API and client side
   - Use GraphQL Shield: https://github.com/maticzav/graphql-shield
     - Query

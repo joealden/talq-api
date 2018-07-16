@@ -1,5 +1,7 @@
-const { GraphQLServer } = require("graphql-yoga");
-const { Prisma } = require("prisma-binding");
+import { GraphQLServer } from "graphql-yoga";
+import { Prisma } from "prisma-binding";
+
+import { Context } from "./utils";
 
 const dummyUser = {
   id: "cjjlmquwscq4m0b22qc5tqfwh",
@@ -25,45 +27,45 @@ const dummyMessage = {
 
 const resolvers = {
   Query: {
-    userFriends: (_, args, context, info) => {
+    userFriends: (_, _args, _context: Context, _info) => {
       return [dummyUser];
     },
-    userName: (_, args, context, info) => {
+    userName: (_, _args, _context: Context, _info) => {
       return {
         firstName: dummyUser.firstName,
         lastName: dummyUser.lastName
       };
     },
-    chat: (_, args, context, info) => {
+    chat: (_, _args, _context: Context, _info) => {
       return dummyChat;
     }
   },
   Mutation: {
-    signup: (_, args, context, info) => {
+    signup: (_, _args, _context: Context, _info) => {
       return [dummyUser];
     },
-    signin: (_, args, context, info) => {
+    signin: (_, _args, _context: Context, _info) => {
       return [dummyUser];
     },
-    addFriend: (_, args, context, info) => {
+    addFriend: (_, _args, _context: Context, _info) => {
       return [dummyUser];
     },
-    changeUserName: (_, args, context, info) => {
+    changeUserName: (_, _args, _context: Context, _info) => {
       return [dummyUser];
     },
-    changeUserEmail: (_, args, context, info) => {
+    changeUserEmail: (_, _args, _context: Context, _info) => {
       return [dummyUser];
     },
-    startChat: (_, args, context, info) => {
+    startChat: (_, _args, _context: Context, _info) => {
       return dummyUser;
     },
-    updateChatTitle: (_, args, context, info) => {
+    updateChatTitle: (_, _args, _context: Context, _info) => {
       return dummyUser;
     },
-    addMembersToChat: (_, args, context, info) => {
+    addMembersToChat: (_, _args, _context: Context, _info) => {
       return dummyUser;
     },
-    sendMessageToChat: (_, args, context, info) => {
+    sendMessageToChat: (_, _args, _context: Context, _info) => {
       return dummyMessage;
     }
   }
