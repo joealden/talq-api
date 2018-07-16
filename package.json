@@ -1,22 +1,23 @@
 {
-  "name": "talq",
-  "description": "A communication platform built with React and GraphQL",
+  "name": "talq-api",
+  "description": "The API for Talq built with Prisma and graphql-yoga",
   "version": "0.1.0",
   "license": "MIT",
   "private": true,
-  "homepage": "https://github.com/joealden/talq",
+  "homepage": "https://github.com/joealden/talq-api",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joealden/talq.git"
+    "url": "git+https://github.com/joealden/talq-api.git"
   },
   "scripts": {
-    "client:build": "cd client; yarn build",
-    "client:dev": "cd client; yarn dev",
-    "client:clean": "./scripts/clean.sh client",
-    "client:install": "yarn client:clean; cd client; yarn",
-    "client:start": "cd client; yarn start",
-    "api:clean": "./scripts/clean.sh api",
-    "api:install": "yarn api:clean; cd api; yarn",
-    "api:prisma:deploy": "cd api; yarn prisma:deploy"
+    "clean": "./scripts/clean.sh",
+    "fetch-prisma-schema": "graphql get-schema -p prisma",
+    "prisma:deploy": "prisma deploy"
+  },
+  "dependencies": {
+    "graphql-cli": "^2.16.4",
+    "graphql-yoga": "^1.14.12",
+    "prisma": "^1.11.1",
+    "prisma-binding": "^2.1.0"
   }
 }

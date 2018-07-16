@@ -1,13 +1,8 @@
 # Dependencies
-api/node_modules
-client/node_modules
-# Incase someone attempts to install deps at top level
-/node_modules
-/yarn.lock
+node_modules
+
 # Incase someone installs deps via npm not yarn
-api/package-lock.json
-client/package-lock.json
-/package-lock.json
+package-lock.json
 
 # misc
 .DS_Store
@@ -19,6 +14,3 @@ client/package-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Next.js Build Directory
-client/.next

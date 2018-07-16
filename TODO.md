@@ -6,7 +6,7 @@
 - Add .prettierrc at root
 - Add precommit hooks with husky etc. for prettier and eslint
   - Look at corum repo(s) for how to do this
-- Continue working on the API side
+- Continue working on the API
   - Configure Prisma service to use a secret for auth
     - This will disallow the Prisma service endpoint to be accessed by
       unauthorized clients
@@ -31,9 +31,5 @@
       - changeUserName - (only user of userId can perform)
       - changeUserEmail - (only user of userId can perform)
       - startChat - (user must be signed in)
-- Add custom Apollo install to client with subscription support
-  - https://www.apollographql.com/docs/react/advanced/boost-migration.html
-  - Connect to API
-  - Test normal query + live query in sidebar
 - Add now.json
 - Look into setting up circleCI
