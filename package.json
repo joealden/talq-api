@@ -12,7 +12,7 @@
   "scripts": {
     "clean": "./scripts/clean.sh",
     "fetch-prisma-schema": "graphql get-schema -p prisma",
-    "dev": "nodemon -e ts,graphql -x ts-node -r dotenv/config src/index.ts",
+    "dev": "graphql codegen; nodemon -e ts,graphql -x ts-node -r dotenv/config src/index.ts",
     "build": "./scripts/buildClean.sh && graphql codegen && tsc",
     "prisma": "prisma",
     "playground": "graphql playground"
