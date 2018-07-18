@@ -10,15 +10,14 @@ type User {
   friends: [User!]!
 }
 
-type Name {
-  firstName: String!
-  lastName: String!
+type AuthPayload {
+  token: String!
+  user: User!
 }
 
 type Query {
-  userFriends(userId: ID!): [User]
-  userName(userId: ID!): Name
-  chat(chatId: ID!): Chat
+  user: User!
+  chat(chatId: ID!): Chat!
 }
 
 type Mutation {
@@ -27,16 +26,17 @@ type Mutation {
     firstName: String!
     lastName: String!
     password: String!
-  ): User
-  signin(email: String!, password: String!): User
-  addFriend(userId: ID!, friendId: ID!): User
-  changeUserName(userId: ID!, firstName: String!, lastName: String!): User
+  ): AuthPayload!
+  signin(email: String!, password: String!): AuthPayload!
+  addFriend(friendId: ID!): User!
+  changeUserName(firstName: String!, lastName: String!): User!
   # Think about verification, maybe add pass arg / email verification?
-  changeUserEmail(userId: ID!, email: String!): User
+  changeUserEmail(email: String!): User!
   # members = Array of user (friend) IDs
+  # members should not contain the current user's ID
   # title = Optional chat title
-  startChat(members: [ID!]!, title: String): Chat
-  updateChatTitle(id: ID!, title: String!): Chat
-  addMembersToChat(chatId: ID!): Chat
-  sendMessageToChat(chatId: ID!, content: String!): Message
+  startChat(memberIds: [ID!]!, title: String): Chat!
+  updateChatTitle(chatId: ID!, newTitle: String!): Chat!
+  addMemberToChat(chatId: ID!, userId: ID!): Chat!
+  sendMessageToChat(chatId: ID!, content: String!): Chat!
 }

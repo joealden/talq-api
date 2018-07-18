@@ -11,19 +11,25 @@
   },
   "scripts": {
     "clean": "./scripts/clean.sh",
-    "fetch-prisma-schema": "graphql get-schema -p prisma",
-    "dev": "graphql codegen; nodemon -e ts,graphql -x ts-node -r dotenv/config src/index.ts",
-    "build": "./scripts/buildClean.sh && graphql codegen && tsc",
+    "dev": "nodemon -e ts,graphql -x ts-node -r dotenv/config src/index.ts",
+    "build": "./scripts/buildClean.sh && tsc",
     "prisma": "prisma",
     "playground": "graphql playground"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
     "graphql-yoga": "^1.14.12",
-    "prisma-binding": "^2.1.1"
+    "jsonwebtoken": "^8.3.0",
+    "prisma-binding": "^2.1.1",
+    "validator": "^10.4.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.1",
     "@types/dotenv": "^4.0.3",
+    "@types/jsonwebtoken": "^7.2.8",
+    "@types/validator": "^9.4.1",
     "dotenv": "^6.0.0",
     "graphql-cli": "^2.16.4",
     "nodemon": "^1.18.3",

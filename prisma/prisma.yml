@@ -1,5 +1,9 @@
-endpoint: https://eu1.prisma.sh/joe-alden-e4ab2a/talq-api/dev
 datamodel: datamodel.graphql
+
+endpoint: ${env:PRISMA_ENDPOINT}
+secret: ${env:PRISMA_SECRET}
+
 hooks:
   post-deploy:
-    - yarn fetch-prisma-schema
+    - graphql get-schema -p prisma
+    - graphql codegen

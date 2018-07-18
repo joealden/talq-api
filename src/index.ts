@@ -1,75 +1,10 @@
 import { GraphQLServer } from "graphql-yoga";
 import { Prisma } from "prisma-binding";
+import * as dotenv from "dotenv";
 
-import { Context } from "./utils";
+import resolvers from "./resolvers";
 
-const dummyUser = {
-  id: "cjjlmquwscq4m0b22qc5tqfwh",
-  email: "test@test.com",
-  firstName: "first",
-  lastName: "last",
-  friends: []
-};
-
-const dummyChat = {
-  id: "cjjlmquwscq4m0b22qc5tqfwh",
-  title: "test title",
-  members: [],
-  messages: []
-};
-
-const dummyMessage = {
-  id: dummyUser.id,
-  author: dummyUser,
-  createdAt: "test date",
-  content: "test content"
-};
-
-const resolvers = {
-  Query: {
-    userFriends: (_, _args, _context: Context, _info) => {
-      return [dummyUser];
-    },
-    userName: (_, _args, _context: Context, _info) => {
-      return {
-        firstName: dummyUser.firstName,
-        lastName: dummyUser.lastName
-      };
-    },
-    chat: (_, _args, _context: Context, _info) => {
-      return dummyChat;
-    }
-  },
-  Mutation: {
-    signup: (_, _args, _context: Context, _info) => {
-      return [dummyUser];
-    },
-    signin: (_, _args, _context: Context, _info) => {
-      return [dummyUser];
-    },
-    addFriend: (_, _args, _context: Context, _info) => {
-      return [dummyUser];
-    },
-    changeUserName: (_, _args, _context: Context, _info) => {
-      return [dummyUser];
-    },
-    changeUserEmail: (_, _args, _context: Context, _info) => {
-      return [dummyUser];
-    },
-    startChat: (_, _args, _context: Context, _info) => {
-      return dummyUser;
-    },
-    updateChatTitle: (_, _args, _context: Context, _info) => {
-      return dummyUser;
-    },
-    addMembersToChat: (_, _args, _context: Context, _info) => {
-      return dummyUser;
-    },
-    sendMessageToChat: (_, _args, _context: Context, _info) => {
-      return dummyMessage;
-    }
-  }
-};
+dotenv.config();
 
 const server = new GraphQLServer({
   typeDefs: "src/schema.graphql",
@@ -90,7 +25,8 @@ const server = new GraphQLServer({
     ...req,
     prisma: new Prisma({
       typeDefs: "src/generated/prisma.graphql",
-      endpoint: "https://eu1.prisma.sh/joe-alden-e4ab2a/talq-api/dev"
+      endpoint: process.env.PRISMA_ENDPOINT,
+      secret: process.env.PRISMA_SECRET
     })
   })
 });
