@@ -25,8 +25,5 @@
       - changeUserName - (only user of userId can perform)
       - changeUserEmail - (only user of userId can perform)
       - startChat - (user must be signed in)
-- Add TSLint?
-- Add precommit hooks with husky etc. for prettier and TSLint?
-  - Look at corum repo(s) for how to do this
 - Add now.json
 - Look into setting up circleCI
