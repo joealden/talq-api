@@ -20,14 +20,14 @@
   "dependencies": {
     "graphql": "^0.13.2",
     "graphql-yoga": "^1.14.12",
-    "prisma-binding": "^2.1.0"
+    "prisma-binding": "^2.1.1"
   },
   "devDependencies": {
     "@types/dotenv": "^4.0.3",
     "dotenv": "^6.0.0",
     "graphql-cli": "^2.16.4",
-    "nodemon": "^1.18.2",
-    "prisma": "^1.11.1",
+    "nodemon": "^1.18.3",
+    "prisma": "^1.12.0",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2"
   }
