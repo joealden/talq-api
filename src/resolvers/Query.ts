@@ -1,6 +1,7 @@
 import { Context, getUserId } from "./utils";
 
 const Query = {
+  /* TODO: use forwardTo found in prisma bindings? */
   user: (_, _args, context: Context, info) => {
     const userId = getUserId(context);
 
@@ -14,6 +15,7 @@ const Query = {
     );
   },
 
+  /* TODO: use forwardTo found in prisma bindings? */
   /* TODO: Add 'users' query for friend search */
 
   chat: (_, args, context: Context, info) => {
