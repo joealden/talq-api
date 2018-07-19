@@ -13,8 +13,7 @@
     "clean": "./scripts/clean.sh",
     "dev": "nodemon -e ts,graphql -x ts-node -r dotenv/config src/index.ts",
     "build": "./scripts/buildClean.sh && tsc",
-    "prisma": "prisma",
-    "playground": "graphql playground"
+    "start": "node dist/index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
