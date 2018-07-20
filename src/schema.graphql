@@ -10,14 +10,13 @@ type User {
   friends: [User!]!
 }
 
-type AuthPayload {
-  token: String!
-  user: User!
-}
-
 type Query {
   user: User!
   chat(chatId: ID!): Chat!
+}
+
+type SuccessMessage {
+  message: String
 }
 
 type Mutation {
@@ -26,8 +25,9 @@ type Mutation {
     firstName: String!
     lastName: String!
     password: String!
-  ): AuthPayload!
-  signin(email: String!, password: String!): AuthPayload!
+  ): User!
+  signin(email: String!, password: String!): User!
+  signout: SuccessMessage
   addFriend(friendId: ID!): User!
   changeUserName(firstName: String!, lastName: String!): User!
   # Think about verification, maybe add pass arg / email verification?

@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.3",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "graphql-yoga": "^1.14.12",
@@ -26,7 +27,9 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.1",
+    "@types/cookie-parser": "^1.4.1",
     "@types/dotenv": "^4.0.3",
+    "@types/express": "^4.16.0",
     "@types/jsonwebtoken": "^7.2.8",
     "@types/validator": "^9.4.1",
     "dotenv": "^6.0.0",
