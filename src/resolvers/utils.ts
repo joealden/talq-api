@@ -11,6 +11,7 @@ export interface Context {
 export const getUserId = (context: Context) => {
   const { token } = context.request.cookies;
 
+  /* Throw error early is a token cookie doesn't even exist */
   if (!token) {
     throw new Error("Not authorized");
   }
@@ -19,5 +20,20 @@ export const getUserId = (context: Context) => {
     userId: string;
   };
 
+  const userExists = context.prisma.exists.User({ id: userId });
+
+  if (!userExists) {
+    throw new Error("Not authorized");
+  }
+
   return userId;
+};
+
+export const checkAuth = (context: Context) => {
+  /* 
+   * Performs the same actions as getUserId
+   * but throws away the returned ID 
+   */
+  getUserId(context);
+  return undefined;
 };

@@ -12,12 +12,19 @@ const authMutations = {
       throw new Error("The email address entered is not valid");
     }
 
-    const userExistsWithEmail = await context.prisma.exists.User({
-      email: args.email
+    /* 
+     * TODO: Return better error message with
+     * exactly which one (or both) is already in use
+     */
+    const userExistsWithEmailorUsername = await context.prisma.exists.User({
+      OR: [{ email: args.email }, { username: args.username }]
     });
 
-    if (userExistsWithEmail) {
-      throw new Error("The email address entered is already in use");
+    if (userExistsWithEmailorUsername) {
+      /* Could fix here with more exists checks to throw different errors */
+      throw new Error(
+        "The email address or username entered is already in use"
+      );
     }
 
     const saltRounds = 10;
@@ -30,7 +37,7 @@ const authMutations = {
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
 
     context.response.cookie("token", token, {
-      /* 1000 years (basically never expires) */
+      /* 1000 years (basically never expires), TODO: work out expiry */
       maxAge: 1000 * 60 * 60 * 24 * 365,
       /* JavaScript on the page cannot access its contents */
       httpOnly: true
@@ -51,7 +58,7 @@ const authMutations = {
 
   signin: async (_, args, context: Context, _info) => {
     const user = await context.prisma.query.user({
-      where: { email: args.email }
+      where: { username: args.username }
     });
 
     if (!user) {
@@ -70,7 +77,7 @@ const authMutations = {
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
 
     context.response.cookie("token", token, {
-      /* 1000 years (basically never expires) */
+      /* 1000 years (basically never expires) TODO: work out expiry */
       maxAge: 1000 * 60 * 60 * 24 * 365,
       /* JavaScript on the page cannot access its contents */
       httpOnly: true

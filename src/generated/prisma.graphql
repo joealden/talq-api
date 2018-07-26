@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/joe-alden-e4ab2a/talq-api/dev
-# timestamp: Sun Jul 15 2018 15:50:10 GMT+0100 (BST)
+# timestamp: Thu Jul 26 2018 14:17:13 GMT+0100 (BST)
 
 type AggregateChat {
   count: Int!
@@ -538,6 +538,7 @@ type Subscription {
 type User implements Node {
   id: ID!
   email: String!
+  username: String!
   firstName: String!
   lastName: String!
   password: String!
@@ -556,6 +557,7 @@ type UserConnection {
 
 input UserCreateInput {
   email: String!
+  username: String!
   firstName: String!
   lastName: String!
   password: String!
@@ -586,6 +588,8 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
+  username_ASC
+  username_DESC
   firstName_ASC
   firstName_DESC
   lastName_ASC
@@ -601,6 +605,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String!
+  username: String!
   firstName: String!
   lastName: String!
   password: String!
@@ -647,6 +652,7 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateDataInput {
   email: String
+  username: String
   firstName: String
   lastName: String
   password: String
@@ -655,6 +661,7 @@ input UserUpdateDataInput {
 
 input UserUpdateInput {
   email: String
+  username: String
   firstName: String
   lastName: String
   password: String
@@ -783,6 +790,46 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
+  username: String
+
+  """All values that are not equal to given value."""
+  username_not: String
+
+  """All values that are contained in given list."""
+  username_in: [String!]
+
+  """All values that are not contained in given list."""
+  username_not_in: [String!]
+
+  """All values less than the given value."""
+  username_lt: String
+
+  """All values less than or equal the given value."""
+  username_lte: String
+
+  """All values greater than the given value."""
+  username_gt: String
+
+  """All values greater than or equal the given value."""
+  username_gte: String
+
+  """All values containing the given string."""
+  username_contains: String
+
+  """All values not containing the given string."""
+  username_not_contains: String
+
+  """All values starting with the given string."""
+  username_starts_with: String
+
+  """All values not starting with the given string."""
+  username_not_starts_with: String
+
+  """All values ending with the given string."""
+  username_ends_with: String
+
+  """All values not ending with the given string."""
+  username_not_ends_with: String
   firstName: String
 
   """All values that are not equal to given value."""
@@ -920,4 +967,5 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   email: String
+  username: String
 }

@@ -608,6 +608,7 @@ type Subscription {
 type User implements Node {
   id: ID!
   email: String!
+  username: String!
   firstName: String!
   lastName: String!
   password: String!
@@ -626,6 +627,7 @@ type UserConnection {
 
 input UserCreateInput {
   email: String!
+  username: String!
   firstName: String!
   lastName: String!
   password: String!
@@ -656,6 +658,8 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
+  username_ASC
+  username_DESC
   firstName_ASC
   firstName_DESC
   lastName_ASC
@@ -671,6 +675,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String!
+  username: String!
   firstName: String!
   lastName: String!
   password: String!
@@ -717,6 +722,7 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateDataInput {
   email: String
+  username: String
   firstName: String
   lastName: String
   password: String
@@ -725,6 +731,7 @@ input UserUpdateDataInput {
 
 input UserUpdateInput {
   email: String
+  username: String
   firstName: String
   lastName: String
   password: String
@@ -853,6 +860,46 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
+  username: String
+
+  """All values that are not equal to given value."""
+  username_not: String
+
+  """All values that are contained in given list."""
+  username_in: [String!]
+
+  """All values that are not contained in given list."""
+  username_not_in: [String!]
+
+  """All values less than the given value."""
+  username_lt: String
+
+  """All values less than or equal the given value."""
+  username_lte: String
+
+  """All values greater than the given value."""
+  username_gt: String
+
+  """All values greater than or equal the given value."""
+  username_gte: String
+
+  """All values containing the given string."""
+  username_contains: String
+
+  """All values not containing the given string."""
+  username_not_contains: String
+
+  """All values starting with the given string."""
+  username_starts_with: String
+
+  """All values not starting with the given string."""
+  username_not_starts_with: String
+
+  """All values ending with the given string."""
+  username_ends_with: String
+
+  """All values not ending with the given string."""
+  username_not_ends_with: String
   firstName: String
 
   """All values that are not equal to given value."""
@@ -990,6 +1037,7 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   email: String
+  username: String
 }
 `
 
@@ -1012,6 +1060,8 @@ export type UserOrderByInput =   'id_ASC' |
   'id_DESC' |
   'email_ASC' |
   'email_DESC' |
+  'username_ASC' |
+  'username_DESC' |
   'firstName_ASC' |
   'firstName_DESC' |
   'lastName_ASC' |
@@ -1157,6 +1207,7 @@ export interface UserUpsertWithWhereUniqueNestedInput {
 
 export interface UserUpdateInput {
   email?: String
+  username?: String
   firstName?: String
   lastName?: String
   password?: String
@@ -1165,6 +1216,7 @@ export interface UserUpdateInput {
 
 export interface UserUpdateDataInput {
   email?: String
+  username?: String
   firstName?: String
   lastName?: String
   password?: String
@@ -1251,6 +1303,7 @@ export interface MessageCreateManyInput {
 
 export interface UserCreateInput {
   email: String
+  username: String
   firstName: String
   lastName: String
   password: String
@@ -1269,6 +1322,7 @@ export interface UserUpdateManyInput {
 export interface UserWhereUniqueInput {
   id?: ID_Input
   email?: String
+  username?: String
 }
 
 export interface UserWhereInput {
@@ -1303,6 +1357,20 @@ export interface UserWhereInput {
   email_not_starts_with?: String
   email_ends_with?: String
   email_not_ends_with?: String
+  username?: String
+  username_not?: String
+  username_in?: String[] | String
+  username_not_in?: String[] | String
+  username_lt?: String
+  username_lte?: String
+  username_gt?: String
+  username_gte?: String
+  username_contains?: String
+  username_not_contains?: String
+  username_starts_with?: String
+  username_not_starts_with?: String
+  username_ends_with?: String
+  username_not_ends_with?: String
   firstName?: String
   firstName_not?: String
   firstName_in?: String[] | String
@@ -1386,6 +1454,7 @@ export interface Node {
 export interface UserPreviousValues {
   id: ID_Output
   email: String
+  username: String
   firstName: String
   lastName: String
   password: String
@@ -1401,6 +1470,7 @@ export interface UserSubscriptionPayload {
 export interface User extends Node {
   id: ID_Output
   email: String
+  username: String
   firstName: String
   lastName: String
   password: String

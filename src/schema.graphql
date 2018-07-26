@@ -1,42 +1,52 @@
 # import Chat from './generated/prisma.graphql'
 # import Message from './generated/prisma.graphql'
 
-# Define type User with password field removed
+# Restrict what client can see about the User type
 type User {
-  id: ID!
   email: String!
+  username: String!
   firstName: String!
   lastName: String!
-  friends: [User!]!
+  friends: [PublicUser!]!
 }
 
-type Query {
-  user: User!
-  chat(chatId: ID!): Chat!
+# Type that will be shown to users other than the type owner
+type PublicUser {
+  username: String!
+  firstName: String!
+  lastName: String!
 }
 
 type SuccessMessage {
   message: String
 }
 
+type Query {
+  user: User!
+  users: [PublicUser!]!
+  chat(chatId: ID!): Chat!
+}
+
 type Mutation {
   signup(
     email: String!
+    username: String!
     firstName: String!
     lastName: String!
     password: String!
   ): User!
-  signin(email: String!, password: String!): User!
+  signin(username: String!, password: String!): User!
   signout: SuccessMessage
-  addFriend(friendId: ID!): User!
-  changeUserName(firstName: String!, lastName: String!): User!
+  addFriend(username: String!): User!
+  changeNames(firstName: String!, lastName: String!): User!
   # Think about verification, maybe add pass arg / email verification?
-  changeUserEmail(email: String!): User!
+  changeEmail(email: String!): User!
+  changeUsername(username: String!): User!
   # members = Array of user (friend) IDs
   # members should not contain the current user's ID
   # title = Optional chat title
-  startChat(memberIds: [ID!]!, title: String): Chat!
-  updateChatTitle(chatId: ID!, newTitle: String!): Chat!
-  addMemberToChat(chatId: ID!, userId: ID!): Chat!
+  startChat(usernames: [String!]!, title: String): Chat!
+  updateChatTitle(chatId: ID!, title: String!): Chat!
+  addMemberToChat(chatId: ID!, username: String!): Chat!
   sendMessageToChat(chatId: ID!, content: String!): Chat!
 }

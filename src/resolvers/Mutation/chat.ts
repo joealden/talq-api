@@ -1,20 +1,28 @@
-import { Context, getUserId } from "../utils";
+import { Context, getUserId, checkAuth } from "../utils";
 
 const chatMutations = {
-  startChat: (_, args, context: Context, info) => {
+  startChat: async (_, args, context: Context, info) => {
     /* 
      * TODO: Users should only be able to create a
      * chat if they are friends with all selected members.
+     * Also a check needs to be made to ensure that all usernames
+     * in args.usernames are valid (they actually exist).
      */
 
     const userId = getUserId(context);
 
-    /* args.title is optional */
+    const user = await context.prisma.query.user({
+      where: {
+        id: userId
+      }
+    });
+
+    /* args.title is optional, potentially redundant */
     const title = args.title ? args.title : null;
 
-    if (args.memberIds.includes(userId)) {
+    if (args.usernames.includes(user.username)) {
       throw new Error(
-        "The currently logged in user ID should not be included in the memberIds array"
+        "The currently logged in user's username should not be included in the usernames array"
       );
     }
 
@@ -24,10 +32,10 @@ const chatMutations = {
           members: {
             connect: [
               /* ID of user that sent creation request */
-              { id: userId },
+              { username: user.username },
               /* IDs of other members to be added */
-              ...args.memberIds.map(memberId => ({
-                id: memberId
+              ...args.usernames.map(username => ({
+                username
               }))
             ]
           },
@@ -42,7 +50,10 @@ const chatMutations = {
     /* 
      * TODO: Users should only be able to update 
      * the title if they are a member of the chat.
+     * Replace below call to checkAuth.
      */
+
+    checkAuth(context);
 
     return context.prisma.mutation.updateChat(
       {
@@ -50,7 +61,7 @@ const chatMutations = {
           id: args.chatId
         },
         data: {
-          title: args.newTitle
+          title: args.title
         }
       },
       info
@@ -64,7 +75,12 @@ const chatMutations = {
      *   member if they are a member of the chat.
      * - Error out if member is attempted to be
      *   added again.
+     * Also, a check needs to be made to ensure that
+     * the user that is being added is actually a valid
+     * user (they exist) Replace below call to checkAuth.
      */
+
+    checkAuth(context);
 
     return context.prisma.mutation.updateChat(
       {
@@ -74,7 +90,7 @@ const chatMutations = {
         data: {
           members: {
             connect: {
-              id: args.userId
+              username: args.username
             }
           }
         }
