@@ -37,6 +37,21 @@ const Query = {
       },
       info
     );
+  },
+
+  chats: (_, _args, context: Context, info) => {
+    const userId = getUserId(context);
+
+    return context.prisma.query.chats(
+      {
+        where: {
+          members_some: {
+            id: userId
+          }
+        }
+      },
+      info
+    );
   }
 };
 
