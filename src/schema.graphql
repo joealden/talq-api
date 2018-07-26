@@ -1,6 +1,3 @@
-# import Chat from './generated/prisma.graphql'
-# import Message from './generated/prisma.graphql'
-
 # Restrict what client can see about the User type
 type User {
   email: String!
@@ -17,6 +14,23 @@ type PublicUser {
   lastName: String!
 }
 
+type Chat {
+  id: ID!
+  title: String
+  members: [PublicUser!]!
+  messages: [Message!]!
+}
+
+# Needed otherwise graphql-yoga complains about missing type
+scalar DateTime
+
+type Message {
+  id: ID!
+  author: PublicUser!
+  createdAt: DateTime!
+  content: String!
+}
+
 type SuccessMessage {
   message: String
 }
@@ -25,7 +39,8 @@ type Query {
   user: User!
   users: [PublicUser!]!
   chat(chatId: ID!): Chat!
-  chats: [Chat!]!
+  # Add more Prisma args (last, skip etc.)
+  chats(first: Int): [Chat!]!
 }
 
 type Mutation {
