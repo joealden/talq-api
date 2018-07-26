@@ -39,7 +39,7 @@ const Query = {
     );
   },
 
-  chats: (_, _args, context: Context, info) => {
+  chats: (_, args, context: Context, info) => {
     const userId = getUserId(context);
 
     return context.prisma.query.chats(
@@ -48,7 +48,9 @@ const Query = {
           members_some: {
             id: userId
           }
-        }
+        },
+        orderBy: "updatedAt_DESC",
+        first: args.first
       },
       info
     );
