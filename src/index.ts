@@ -45,6 +45,6 @@ const serverOptions: Options = {
 
 server.start(serverOptions, ({ port }) =>
   console.log(
-    `API Server started, listening on port ${port} for incoming requests.`
+    `Talq API Server started, listening on port ${port} for incoming requests.`
   )
 );
