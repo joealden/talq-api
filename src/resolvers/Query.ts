@@ -21,13 +21,27 @@ const Query = {
     return context.prisma.query.users({}, info);
   },
 
-  chat: (_, args, context: Context, info) => {
-    /* 
-     * TODO: Only members of the chat can query any
-     * chat fields. Replace below call to checkAuth.
-     */
+  chat: async (_, args, context: Context, info) => {
+    const userId = getUserId(context);
 
-    checkAuth(context);
+    const chatExistsAndUserIsMember = await context.prisma.exists.Chat({
+      AND: [
+        {
+          id: args.chatId
+        },
+        {
+          members_some: {
+            id: userId
+          }
+        }
+      ]
+    });
+
+    if (!chatExistsAndUserIsMember) {
+      throw new Error(
+        "Either this chat doesn't exist, or the logged in user is not a member of it"
+      );
+    }
 
     return context.prisma.query.chat(
       {
