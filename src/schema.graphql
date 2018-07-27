@@ -22,6 +22,7 @@ type Chat {
 }
 
 # Needed otherwise graphql-yoga complains about missing type
+# TODO: Change from DateTime to just String?
 scalar DateTime
 
 type Message {
