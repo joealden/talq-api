@@ -39,8 +39,9 @@ type SuccessMessage {
 type Query {
   user: User!
   users: [PublicUser!]!
+  # Add Prisma args on messages (last, skip etc.)
   chat(chatId: ID!): Chat!
-  # Add more Prisma args (last, skip etc.)
+  # Add more Prisma args (skip etc.)
   chats(first: Int): [Chat!]!
 }
 
