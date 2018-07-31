@@ -1,5 +1,9 @@
 # TODO
 
+- Implement max size for usernames (An eventually names)
+
+## Later
+
 - Look into subscriptions for API
 - Look into adding paging support to application server for:
   - chat messages

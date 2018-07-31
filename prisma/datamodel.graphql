@@ -17,6 +17,7 @@ type Chat {
 
 type Message {
   id: ID! @unique
+  chat: Chat!
   author: User!
   createdAt: DateTime!
   content: String!

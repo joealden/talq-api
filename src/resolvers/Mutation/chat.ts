@@ -99,7 +99,7 @@ const chatMutations = {
     );
   },
 
-  sendMessageToChat: (_, args, context: Context, info) => {
+  sendMessageToChat: async (_, args, context: Context, info) => {
     /* 
      * TODO: Users should only be able to send a 
      * message if they are a member of the chat.
@@ -107,22 +107,24 @@ const chatMutations = {
 
     const userId = getUserId(context);
 
-    return context.prisma.mutation.updateChat(
+    if (args.content === "") {
+      throw new Error("The message's content cannot be empty");
+    }
+
+    return context.prisma.mutation.createMessage(
       {
-        where: {
-          id: args.chatId
-        },
         data: {
-          messages: {
-            create: {
-              author: {
-                connect: {
-                  id: userId
-                }
-              },
-              content: args.content
+          chat: {
+            connect: {
+              id: args.chatId
             }
-          }
+          },
+          author: {
+            connect: {
+              id: userId
+            }
+          },
+          content: args.content
         }
       },
       info

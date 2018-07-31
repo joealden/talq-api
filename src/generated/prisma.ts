@@ -108,7 +108,17 @@ type ChatConnection {
 input ChatCreateInput {
   title: String
   members: UserCreateManyInput
-  messages: MessageCreateManyInput
+  messages: MessageCreateManyWithoutChatInput
+}
+
+input ChatCreateOneWithoutMessagesInput {
+  create: ChatCreateWithoutMessagesInput
+  connect: ChatWhereUniqueInput
+}
+
+input ChatCreateWithoutMessagesInput {
+  title: String
+  members: UserCreateManyInput
 }
 
 """An edge in a connection."""
@@ -178,7 +188,25 @@ input ChatSubscriptionWhereInput {
 input ChatUpdateInput {
   title: String
   members: UserUpdateManyInput
-  messages: MessageUpdateManyInput
+  messages: MessageUpdateManyWithoutChatInput
+}
+
+input ChatUpdateOneWithoutMessagesInput {
+  create: ChatCreateWithoutMessagesInput
+  connect: ChatWhereUniqueInput
+  delete: Boolean
+  update: ChatUpdateWithoutMessagesDataInput
+  upsert: ChatUpsertWithoutMessagesInput
+}
+
+input ChatUpdateWithoutMessagesDataInput {
+  title: String
+  members: UserUpdateManyInput
+}
+
+input ChatUpsertWithoutMessagesInput {
+  update: ChatUpdateWithoutMessagesDataInput!
+  create: ChatCreateWithoutMessagesInput!
 }
 
 input ChatWhereInput {
@@ -292,6 +320,7 @@ scalar Long
 
 type Message implements Node {
   id: ID!
+  chat(where: ChatWhereInput): Chat!
   author(where: UserWhereInput): User!
   createdAt: DateTime!
   content: String!
@@ -309,12 +338,18 @@ type MessageConnection {
 
 input MessageCreateInput {
   content: String!
+  chat: ChatCreateOneWithoutMessagesInput!
   author: UserCreateOneInput!
 }
 
-input MessageCreateManyInput {
-  create: [MessageCreateInput!]
+input MessageCreateManyWithoutChatInput {
+  create: [MessageCreateWithoutChatInput!]
   connect: [MessageWhereUniqueInput!]
+}
+
+input MessageCreateWithoutChatInput {
+  content: String!
+  author: UserCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -382,34 +417,35 @@ input MessageSubscriptionWhereInput {
   node: MessageWhereInput
 }
 
-input MessageUpdateDataInput {
-  content: String
-  author: UserUpdateOneInput
-}
-
 input MessageUpdateInput {
   content: String
+  chat: ChatUpdateOneWithoutMessagesInput
   author: UserUpdateOneInput
 }
 
-input MessageUpdateManyInput {
-  create: [MessageCreateInput!]
+input MessageUpdateManyWithoutChatInput {
+  create: [MessageCreateWithoutChatInput!]
   connect: [MessageWhereUniqueInput!]
   disconnect: [MessageWhereUniqueInput!]
   delete: [MessageWhereUniqueInput!]
-  update: [MessageUpdateWithWhereUniqueNestedInput!]
-  upsert: [MessageUpsertWithWhereUniqueNestedInput!]
+  update: [MessageUpdateWithWhereUniqueWithoutChatInput!]
+  upsert: [MessageUpsertWithWhereUniqueWithoutChatInput!]
 }
 
-input MessageUpdateWithWhereUniqueNestedInput {
-  where: MessageWhereUniqueInput!
-  data: MessageUpdateDataInput!
+input MessageUpdateWithoutChatDataInput {
+  content: String
+  author: UserUpdateOneInput
 }
 
-input MessageUpsertWithWhereUniqueNestedInput {
+input MessageUpdateWithWhereUniqueWithoutChatInput {
   where: MessageWhereUniqueInput!
-  update: MessageUpdateDataInput!
-  create: MessageCreateInput!
+  data: MessageUpdateWithoutChatDataInput!
+}
+
+input MessageUpsertWithWhereUniqueWithoutChatInput {
+  where: MessageWhereUniqueInput!
+  update: MessageUpdateWithoutChatDataInput!
+  create: MessageCreateWithoutChatInput!
 }
 
 input MessageWhereInput {
@@ -523,10 +559,8 @@ input MessageWhereInput {
 
   """All values not ending with the given string."""
   content_not_ends_with: String
+  chat: ChatWhereInput
   author: UserWhereInput
-  _MagicalBackRelation_ChatToMessage_every: ChatWhereInput
-  _MagicalBackRelation_ChatToMessage_some: ChatWhereInput
-  _MagicalBackRelation_ChatToMessage_none: ChatWhereInput
 }
 
 input MessageWhereUniqueInput {
@@ -1023,15 +1057,6 @@ input UserWhereInput {
   friends_every: UserWhereInput
   friends_some: UserWhereInput
   friends_none: UserWhereInput
-  _MagicalBackRelation_ChatToUser_every: ChatWhereInput
-  _MagicalBackRelation_ChatToUser_some: ChatWhereInput
-  _MagicalBackRelation_ChatToUser_none: ChatWhereInput
-  _MagicalBackRelation_UserToUser_every: UserWhereInput
-  _MagicalBackRelation_UserToUser_some: UserWhereInput
-  _MagicalBackRelation_UserToUser_none: UserWhereInput
-  _MagicalBackRelation_MessageToUser_every: MessageWhereInput
-  _MagicalBackRelation_MessageToUser_some: MessageWhereInput
-  _MagicalBackRelation_MessageToUser_none: MessageWhereInput
 }
 
 input UserWhereUniqueInput {
@@ -1086,9 +1111,9 @@ export type MutationType =   'CREATED' |
   'UPDATED' |
   'DELETED'
 
-export interface UserCreateManyInput {
-  create?: UserCreateInput[] | UserCreateInput
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput
+export interface MessageCreateWithoutChatInput {
+  content: String
+  author: UserCreateOneInput
 }
 
 export interface ChatWhereInput {
@@ -1136,9 +1161,9 @@ export interface UserUpsertNestedInput {
   create: UserCreateInput
 }
 
-export interface UserCreateOneInput {
-  create?: UserCreateInput
-  connect?: UserWhereUniqueInput
+export interface UserUpdateWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput
+  data: UserUpdateDataInput
 }
 
 export interface UserUpdateOneInput {
@@ -1149,12 +1174,12 @@ export interface UserUpdateOneInput {
   upsert?: UserUpsertNestedInput
 }
 
-export interface MessageCreateInput {
-  content: String
-  author: UserCreateOneInput
+export interface ChatCreateOneWithoutMessagesInput {
+  create?: ChatCreateWithoutMessagesInput
+  connect?: ChatWhereUniqueInput
 }
 
-export interface MessageUpdateDataInput {
+export interface MessageUpdateWithoutChatDataInput {
   content?: String
   author?: UserUpdateOneInput
 }
@@ -1170,9 +1195,9 @@ export interface MessageSubscriptionWhereInput {
   node?: MessageWhereInput
 }
 
-export interface MessageUpdateWithWhereUniqueNestedInput {
+export interface MessageUpdateWithWhereUniqueWithoutChatInput {
   where: MessageWhereUniqueInput
-  data: MessageUpdateDataInput
+  data: MessageUpdateWithoutChatDataInput
 }
 
 export interface ChatSubscriptionWhereInput {
@@ -1186,23 +1211,23 @@ export interface ChatSubscriptionWhereInput {
   node?: ChatWhereInput
 }
 
-export interface MessageUpdateManyInput {
-  create?: MessageCreateInput[] | MessageCreateInput
+export interface MessageUpdateManyWithoutChatInput {
+  create?: MessageCreateWithoutChatInput[] | MessageCreateWithoutChatInput
   connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput
   disconnect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput
   delete?: MessageWhereUniqueInput[] | MessageWhereUniqueInput
-  update?: MessageUpdateWithWhereUniqueNestedInput[] | MessageUpdateWithWhereUniqueNestedInput
-  upsert?: MessageUpsertWithWhereUniqueNestedInput[] | MessageUpsertWithWhereUniqueNestedInput
+  update?: MessageUpdateWithWhereUniqueWithoutChatInput[] | MessageUpdateWithWhereUniqueWithoutChatInput
+  upsert?: MessageUpsertWithWhereUniqueWithoutChatInput[] | MessageUpsertWithWhereUniqueWithoutChatInput
 }
 
 export interface MessageWhereUniqueInput {
   id?: ID_Input
 }
 
-export interface UserUpsertWithWhereUniqueNestedInput {
-  where: UserWhereUniqueInput
-  update: UserUpdateDataInput
-  create: UserCreateInput
+export interface ChatCreateInput {
+  title?: String
+  members?: UserCreateManyInput
+  messages?: MessageCreateManyWithoutChatInput
 }
 
 export interface UserUpdateInput {
@@ -1214,91 +1239,14 @@ export interface UserUpdateInput {
   friends?: UserUpdateManyInput
 }
 
-export interface UserUpdateDataInput {
-  email?: String
-  username?: String
-  firstName?: String
-  lastName?: String
-  password?: String
-  friends?: UserUpdateManyInput
+export interface UserCreateManyInput {
+  create?: UserCreateInput[] | UserCreateInput
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput
 }
 
-export interface MessageUpsertWithWhereUniqueNestedInput {
-  where: MessageWhereUniqueInput
-  update: MessageUpdateDataInput
-  create: MessageCreateInput
-}
-
-export interface UserUpdateWithWhereUniqueNestedInput {
-  where: UserWhereUniqueInput
-  data: UserUpdateDataInput
-}
-
-export interface MessageWhereInput {
-  AND?: MessageWhereInput[] | MessageWhereInput
-  OR?: MessageWhereInput[] | MessageWhereInput
-  NOT?: MessageWhereInput[] | MessageWhereInput
-  id?: ID_Input
-  id_not?: ID_Input
-  id_in?: ID_Input[] | ID_Input
-  id_not_in?: ID_Input[] | ID_Input
-  id_lt?: ID_Input
-  id_lte?: ID_Input
-  id_gt?: ID_Input
-  id_gte?: ID_Input
-  id_contains?: ID_Input
-  id_not_contains?: ID_Input
-  id_starts_with?: ID_Input
-  id_not_starts_with?: ID_Input
-  id_ends_with?: ID_Input
-  id_not_ends_with?: ID_Input
-  createdAt?: DateTime
-  createdAt_not?: DateTime
-  createdAt_in?: DateTime[] | DateTime
-  createdAt_not_in?: DateTime[] | DateTime
-  createdAt_lt?: DateTime
-  createdAt_lte?: DateTime
-  createdAt_gt?: DateTime
-  createdAt_gte?: DateTime
-  content?: String
-  content_not?: String
-  content_in?: String[] | String
-  content_not_in?: String[] | String
-  content_lt?: String
-  content_lte?: String
-  content_gt?: String
-  content_gte?: String
-  content_contains?: String
-  content_not_contains?: String
-  content_starts_with?: String
-  content_not_starts_with?: String
-  content_ends_with?: String
-  content_not_ends_with?: String
-  author?: UserWhereInput
-  _MagicalBackRelation_ChatToMessage_every?: ChatWhereInput
-  _MagicalBackRelation_ChatToMessage_some?: ChatWhereInput
-  _MagicalBackRelation_ChatToMessage_none?: ChatWhereInput
-}
-
-export interface ChatCreateInput {
-  title?: String
-  members?: UserCreateManyInput
-  messages?: MessageCreateManyInput
-}
-
-export interface ChatWhereUniqueInput {
-  id?: ID_Input
-}
-
-export interface ChatUpdateInput {
+export interface ChatUpdateWithoutMessagesDataInput {
   title?: String
   members?: UserUpdateManyInput
-  messages?: MessageUpdateManyInput
-}
-
-export interface MessageCreateManyInput {
-  create?: MessageCreateInput[] | MessageCreateInput
-  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput
 }
 
 export interface UserCreateInput {
@@ -1310,19 +1258,32 @@ export interface UserCreateInput {
   friends?: UserCreateManyInput
 }
 
-export interface UserUpdateManyInput {
-  create?: UserCreateInput[] | UserCreateInput
-  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput
-  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput
-  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput
-  update?: UserUpdateWithWhereUniqueNestedInput[] | UserUpdateWithWhereUniqueNestedInput
-  upsert?: UserUpsertWithWhereUniqueNestedInput[] | UserUpsertWithWhereUniqueNestedInput
+export interface MessageUpdateInput {
+  content?: String
+  chat?: ChatUpdateOneWithoutMessagesInput
+  author?: UserUpdateOneInput
 }
 
-export interface UserWhereUniqueInput {
-  id?: ID_Input
-  email?: String
-  username?: String
+export interface MessageCreateManyWithoutChatInput {
+  create?: MessageCreateWithoutChatInput[] | MessageCreateWithoutChatInput
+  connect?: MessageWhereUniqueInput[] | MessageWhereUniqueInput
+}
+
+export interface UserSubscriptionWhereInput {
+  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: UserWhereInput
+}
+
+export interface UserUpsertWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput
+  update: UserUpdateDataInput
+  create: UserCreateInput
 }
 
 export interface UserWhereInput {
@@ -1416,31 +1377,119 @@ export interface UserWhereInput {
   friends_every?: UserWhereInput
   friends_some?: UserWhereInput
   friends_none?: UserWhereInput
-  _MagicalBackRelation_ChatToUser_every?: ChatWhereInput
-  _MagicalBackRelation_ChatToUser_some?: ChatWhereInput
-  _MagicalBackRelation_ChatToUser_none?: ChatWhereInput
-  _MagicalBackRelation_UserToUser_every?: UserWhereInput
-  _MagicalBackRelation_UserToUser_some?: UserWhereInput
-  _MagicalBackRelation_UserToUser_none?: UserWhereInput
-  _MagicalBackRelation_MessageToUser_every?: MessageWhereInput
-  _MagicalBackRelation_MessageToUser_some?: MessageWhereInput
-  _MagicalBackRelation_MessageToUser_none?: MessageWhereInput
 }
 
-export interface UserSubscriptionWhereInput {
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput
-  mutation_in?: MutationType[] | MutationType
-  updatedFields_contains?: String
-  updatedFields_contains_every?: String[] | String
-  updatedFields_contains_some?: String[] | String
-  node?: UserWhereInput
+export interface UserCreateOneInput {
+  create?: UserCreateInput
+  connect?: UserWhereUniqueInput
 }
 
-export interface MessageUpdateInput {
+export interface UserWhereUniqueInput {
+  id?: ID_Input
+  email?: String
+  username?: String
+}
+
+export interface MessageCreateInput {
+  content: String
+  chat: ChatCreateOneWithoutMessagesInput
+  author: UserCreateOneInput
+}
+
+export interface ChatUpdateOneWithoutMessagesInput {
+  create?: ChatCreateWithoutMessagesInput
+  connect?: ChatWhereUniqueInput
+  delete?: Boolean
+  update?: ChatUpdateWithoutMessagesDataInput
+  upsert?: ChatUpsertWithoutMessagesInput
+}
+
+export interface UserUpdateManyInput {
+  create?: UserCreateInput[] | UserCreateInput
+  connect?: UserWhereUniqueInput[] | UserWhereUniqueInput
+  disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput
+  delete?: UserWhereUniqueInput[] | UserWhereUniqueInput
+  update?: UserUpdateWithWhereUniqueNestedInput[] | UserUpdateWithWhereUniqueNestedInput
+  upsert?: UserUpsertWithWhereUniqueNestedInput[] | UserUpsertWithWhereUniqueNestedInput
+}
+
+export interface ChatUpdateInput {
+  title?: String
+  members?: UserUpdateManyInput
+  messages?: MessageUpdateManyWithoutChatInput
+}
+
+export interface ChatCreateWithoutMessagesInput {
+  title?: String
+  members?: UserCreateManyInput
+}
+
+export interface UserUpdateDataInput {
+  email?: String
+  username?: String
+  firstName?: String
+  lastName?: String
+  password?: String
+  friends?: UserUpdateManyInput
+}
+
+export interface MessageUpsertWithWhereUniqueWithoutChatInput {
+  where: MessageWhereUniqueInput
+  update: MessageUpdateWithoutChatDataInput
+  create: MessageCreateWithoutChatInput
+}
+
+export interface ChatUpsertWithoutMessagesInput {
+  update: ChatUpdateWithoutMessagesDataInput
+  create: ChatCreateWithoutMessagesInput
+}
+
+export interface ChatWhereUniqueInput {
+  id?: ID_Input
+}
+
+export interface MessageWhereInput {
+  AND?: MessageWhereInput[] | MessageWhereInput
+  OR?: MessageWhereInput[] | MessageWhereInput
+  NOT?: MessageWhereInput[] | MessageWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  createdAt?: DateTime
+  createdAt_not?: DateTime
+  createdAt_in?: DateTime[] | DateTime
+  createdAt_not_in?: DateTime[] | DateTime
+  createdAt_lt?: DateTime
+  createdAt_lte?: DateTime
+  createdAt_gt?: DateTime
+  createdAt_gte?: DateTime
   content?: String
-  author?: UserUpdateOneInput
+  content_not?: String
+  content_in?: String[] | String
+  content_not_in?: String[] | String
+  content_lt?: String
+  content_lte?: String
+  content_gt?: String
+  content_gte?: String
+  content_contains?: String
+  content_not_contains?: String
+  content_starts_with?: String
+  content_not_starts_with?: String
+  content_ends_with?: String
+  content_not_ends_with?: String
+  chat?: ChatWhereInput
+  author?: UserWhereInput
 }
 
 /*
@@ -1568,6 +1617,7 @@ export interface MessageSubscriptionPayload {
 
 export interface Message extends Node {
   id: ID_Output
+  chat: Chat
   author: User
   createdAt: DateTime
   content: String

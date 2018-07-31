@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/joe-alden-e4ab2a/talq-api/dev
-# timestamp: Thu Jul 26 2018 14:17:13 GMT+0100 (BST)
+# timestamp: Tue Jul 31 2018 16:30:46 GMT+0100 (BST)
 
 type AggregateChat {
   count: Int!
@@ -38,7 +38,17 @@ type ChatConnection {
 input ChatCreateInput {
   title: String
   members: UserCreateManyInput
-  messages: MessageCreateManyInput
+  messages: MessageCreateManyWithoutChatInput
+}
+
+input ChatCreateOneWithoutMessagesInput {
+  create: ChatCreateWithoutMessagesInput
+  connect: ChatWhereUniqueInput
+}
+
+input ChatCreateWithoutMessagesInput {
+  title: String
+  members: UserCreateManyInput
 }
 
 """An edge in a connection."""
@@ -108,7 +118,25 @@ input ChatSubscriptionWhereInput {
 input ChatUpdateInput {
   title: String
   members: UserUpdateManyInput
-  messages: MessageUpdateManyInput
+  messages: MessageUpdateManyWithoutChatInput
+}
+
+input ChatUpdateOneWithoutMessagesInput {
+  create: ChatCreateWithoutMessagesInput
+  connect: ChatWhereUniqueInput
+  delete: Boolean
+  update: ChatUpdateWithoutMessagesDataInput
+  upsert: ChatUpsertWithoutMessagesInput
+}
+
+input ChatUpdateWithoutMessagesDataInput {
+  title: String
+  members: UserUpdateManyInput
+}
+
+input ChatUpsertWithoutMessagesInput {
+  update: ChatUpdateWithoutMessagesDataInput!
+  create: ChatCreateWithoutMessagesInput!
 }
 
 input ChatWhereInput {
@@ -222,6 +250,7 @@ scalar Long
 
 type Message implements Node {
   id: ID!
+  chat(where: ChatWhereInput): Chat!
   author(where: UserWhereInput): User!
   createdAt: DateTime!
   content: String!
@@ -239,12 +268,18 @@ type MessageConnection {
 
 input MessageCreateInput {
   content: String!
+  chat: ChatCreateOneWithoutMessagesInput!
   author: UserCreateOneInput!
 }
 
-input MessageCreateManyInput {
-  create: [MessageCreateInput!]
+input MessageCreateManyWithoutChatInput {
+  create: [MessageCreateWithoutChatInput!]
   connect: [MessageWhereUniqueInput!]
+}
+
+input MessageCreateWithoutChatInput {
+  content: String!
+  author: UserCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -312,34 +347,35 @@ input MessageSubscriptionWhereInput {
   node: MessageWhereInput
 }
 
-input MessageUpdateDataInput {
-  content: String
-  author: UserUpdateOneInput
-}
-
 input MessageUpdateInput {
   content: String
+  chat: ChatUpdateOneWithoutMessagesInput
   author: UserUpdateOneInput
 }
 
-input MessageUpdateManyInput {
-  create: [MessageCreateInput!]
+input MessageUpdateManyWithoutChatInput {
+  create: [MessageCreateWithoutChatInput!]
   connect: [MessageWhereUniqueInput!]
   disconnect: [MessageWhereUniqueInput!]
   delete: [MessageWhereUniqueInput!]
-  update: [MessageUpdateWithWhereUniqueNestedInput!]
-  upsert: [MessageUpsertWithWhereUniqueNestedInput!]
+  update: [MessageUpdateWithWhereUniqueWithoutChatInput!]
+  upsert: [MessageUpsertWithWhereUniqueWithoutChatInput!]
 }
 
-input MessageUpdateWithWhereUniqueNestedInput {
-  where: MessageWhereUniqueInput!
-  data: MessageUpdateDataInput!
+input MessageUpdateWithoutChatDataInput {
+  content: String
+  author: UserUpdateOneInput
 }
 
-input MessageUpsertWithWhereUniqueNestedInput {
+input MessageUpdateWithWhereUniqueWithoutChatInput {
   where: MessageWhereUniqueInput!
-  update: MessageUpdateDataInput!
-  create: MessageCreateInput!
+  data: MessageUpdateWithoutChatDataInput!
+}
+
+input MessageUpsertWithWhereUniqueWithoutChatInput {
+  where: MessageWhereUniqueInput!
+  update: MessageUpdateWithoutChatDataInput!
+  create: MessageCreateWithoutChatInput!
 }
 
 input MessageWhereInput {
@@ -453,10 +489,8 @@ input MessageWhereInput {
 
   """All values not ending with the given string."""
   content_not_ends_with: String
+  chat: ChatWhereInput
   author: UserWhereInput
-  _MagicalBackRelation_ChatToMessage_every: ChatWhereInput
-  _MagicalBackRelation_ChatToMessage_some: ChatWhereInput
-  _MagicalBackRelation_ChatToMessage_none: ChatWhereInput
 }
 
 input MessageWhereUniqueInput {
@@ -953,15 +987,6 @@ input UserWhereInput {
   friends_every: UserWhereInput
   friends_some: UserWhereInput
   friends_none: UserWhereInput
-  _MagicalBackRelation_ChatToUser_every: ChatWhereInput
-  _MagicalBackRelation_ChatToUser_some: ChatWhereInput
-  _MagicalBackRelation_ChatToUser_none: ChatWhereInput
-  _MagicalBackRelation_UserToUser_every: UserWhereInput
-  _MagicalBackRelation_UserToUser_some: UserWhereInput
-  _MagicalBackRelation_UserToUser_none: UserWhereInput
-  _MagicalBackRelation_MessageToUser_every: MessageWhereInput
-  _MagicalBackRelation_MessageToUser_some: MessageWhereInput
-  _MagicalBackRelation_MessageToUser_none: MessageWhereInput
 }
 
 input UserWhereUniqueInput {
