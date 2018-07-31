@@ -1,5 +1,6 @@
 # TODO
 
+- Look into orderBy: last updated (Not working as expected for chat list query)
 - Implement max size for usernames (An eventually names)
 
 ## Later
