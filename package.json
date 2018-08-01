@@ -20,7 +20,7 @@
     "cookie-parser": "^1.4.3",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
-    "graphql-yoga": "^1.14.12",
+    "graphql-yoga": "^1.15.0",
     "jsonwebtoken": "^8.3.0",
     "prisma-binding": "^2.1.1",
     "validator": "^10.4.0"
@@ -35,8 +35,8 @@
     "dotenv": "^6.0.0",
     "graphql-cli": "^2.16.5",
     "nodemon": "^1.18.3",
-    "prisma": "^1.12.0",
+    "prisma": "^1.13.2",
     "ts-node": "^7.0.0",
-    "typescript": "^2.9.2"
+    "typescript": "^3.0.1"
   }
 }
