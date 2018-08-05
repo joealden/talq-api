@@ -66,7 +66,11 @@ type Mutation {
   # members = Array of user (friend) IDs
   # members should not contain the current user's ID
   # title = Optional chat title
-  startChat(usernames: [String!]!, title: String): Chat!
+  startChat(
+    title: String
+    usernames: [String!]!
+    initialMessage: String!
+  ): Chat!
   updateChatTitle(chatId: ID!, title: String!): Chat!
   addMemberToChat(chatId: ID!, username: String!): Chat!
   sendMessageToChat(chatId: ID!, content: String!): Message!

@@ -17,13 +17,14 @@ const chatMutations = {
       }
     });
 
-    /* args.title is optional, potentially redundant */
-    const title = args.title ? args.title : null;
-
     if (args.usernames.includes(user.username)) {
       throw new Error(
         "The currently logged in user's username should not be included in the usernames array"
       );
+    }
+
+    if (args.initialMessage === "") {
+      throw new Error("The inital message cannot be an empty string");
     }
 
     return context.prisma.mutation.createChat(
@@ -39,7 +40,17 @@ const chatMutations = {
               }))
             ]
           },
-          title
+          messages: {
+            create: {
+              author: {
+                connect: {
+                  id: userId
+                }
+              },
+              content: args.initialMessage
+            }
+          },
+          title: args.title
         }
       },
       info
