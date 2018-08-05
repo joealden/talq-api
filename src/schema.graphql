@@ -58,6 +58,7 @@ type Mutation {
   signin(username: String!, password: String!): User!
   signout: SuccessMessage
   addFriend(username: String!): User!
+  removeFriend(username: String!): User!
   changeNames(firstName: String!, lastName: String!): User!
   # Think about verification, maybe add pass arg / email verification?
   changeEmail(email: String!): User!
