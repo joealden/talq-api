@@ -27,6 +27,13 @@ const chatMutations = {
       throw new Error("The inital message cannot be an empty string");
     }
 
+    /* If changing length, change on client side as well */
+    if (args.title && args.title.length > 40) {
+      throw new Error(
+        "The chat's title cannot be more than 50 characters long"
+      );
+    }
+
     return context.prisma.mutation.createChat(
       {
         data: {
