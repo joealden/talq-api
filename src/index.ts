@@ -1,4 +1,6 @@
-import { GraphQLServer, Options } from "graphql-yoga";
+/* TODO: Migrate back to normal graphql-yoga once issue is fixed */
+import { GraphQLServer, Options } from "@joealden/graphql-yoga";
+
 import { Prisma } from "prisma-binding";
 import * as dotenv from "dotenv";
 import * as cookieParser from "cookie-parser";
@@ -36,7 +38,7 @@ const server = new GraphQLServer({
 server.express.use(cookieParser());
 
 const serverOptions: Options = {
-  port: process.env.APP_PORT || 4000,
+  port: process.env.APP_PORT || 8888,
   cors: {
     credentials: true,
     origin: process.env.FRONTEND_URL

@@ -1,4 +1,5 @@
 import Query from "./Query";
+import Subscription from "./Subscription";
 
 import authMutations from "./Mutation/auth";
 import chatMutations from "./Mutation/chat";
@@ -20,6 +21,7 @@ const Mutation = {
 
 const resolvers = {
   Query,
+  Subscription,
   Mutation
 };
 

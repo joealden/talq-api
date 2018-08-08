@@ -47,6 +47,10 @@ type Query {
   chats(first: Int): [Chat!]!
 }
 
+type Subscription {
+  newChatMessage(chatId: ID!): Message
+}
+
 type Mutation {
   signup(
     email: String!
