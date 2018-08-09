@@ -31,9 +31,9 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@heroku/linewrap/-/linewrap-1.0.0.tgz#a9d4e99f0a3e423a899b775f5f3d6747a1ff15c6"
 
-"@joealden/graphql-yoga@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@joealden/graphql-yoga/-/graphql-yoga-1.0.1.tgz#1c71967d2ff028ce7a3db2d37c6c4927393d7038"
+"@joealden/graphql-yoga@^1.15.1":
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/@joealden/graphql-yoga/-/graphql-yoga-1.15.1.tgz#20585e9604a434210486263b9c41fbf88e289616"
   dependencies:
     "@types/cors" "^2.8.4"
     "@types/express" "^4.11.1"
