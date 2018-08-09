@@ -1,5 +1,6 @@
 # TODO
 
+- Look into sending WebSocket traffic over wss instead of ws (not encrypted)
 - Implement more subscription stuff
 
 ## Later
