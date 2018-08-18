@@ -1,5 +1,15 @@
 # TODO
 
+## NOTE
+
+Version `2.1.4` of `prisma-binding` introduced a pretty major regression to with
+subscriptions. For this reason, `prisma-binding` is currently pinned at version
+`2.1.3` until this issue has been resolved.
+
+https://github.com/prisma/prisma-binding/issues/229
+
+## Now
+
 - Look into sending WebSocket traffic over wss instead of ws (not encrypted)
 - Implement more subscription stuff
 
