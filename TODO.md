@@ -15,6 +15,8 @@ https://github.com/prisma/prisma-binding/issues/229
 
 ## Later
 
+- Switch from graphql-yoga to apollo-server due to lack of maintainance of
+  graphql-yoga (and other prisma owned libs tbh)
 - Look into orderBy: last updated (Not working as expected for chat list query)
 - Implement max size for usernames (An eventually names)
 - Look into adding paging support to application server for:
