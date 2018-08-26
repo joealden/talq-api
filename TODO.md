@@ -10,11 +10,11 @@ https://github.com/prisma/prisma-binding/issues/229
 
 ## Now
 
-- Look into sending WebSocket traffic over wss instead of ws (not encrypted)
 - Implement more subscription stuff
 
 ## Later
 
+- Look into sending WebSocket traffic over wss instead of ws (not encrypted)
 - Switch from graphql-yoga to apollo-server due to lack of maintainance of
   graphql-yoga (and other prisma owned libs tbh)
 - Look into orderBy: last updated (Not working as expected for chat list query)
