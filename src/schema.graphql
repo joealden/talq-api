@@ -49,6 +49,7 @@ type Query {
 
 type Subscription {
   newChatMessage(chatId: ID!): Message
+  chatListUpdate: Chat
 }
 
 type Mutation {

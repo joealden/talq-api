@@ -13,6 +13,8 @@ type Chat {
   title: String
   members: [User!]!
   messages: [Message!]!
+  # Required for correctly notifying subscribing clients
+  dummy: String
 }
 
 type Message {

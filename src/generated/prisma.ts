@@ -93,6 +93,7 @@ type Chat implements Node {
   title: String
   members(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
+  dummy: String
 }
 
 """A connection to a list of items."""
@@ -107,6 +108,7 @@ type ChatConnection {
 
 input ChatCreateInput {
   title: String
+  dummy: String
   members: UserCreateManyInput
   messages: MessageCreateManyWithoutChatInput
 }
@@ -118,6 +120,7 @@ input ChatCreateOneWithoutMessagesInput {
 
 input ChatCreateWithoutMessagesInput {
   title: String
+  dummy: String
   members: UserCreateManyInput
 }
 
@@ -135,6 +138,8 @@ enum ChatOrderByInput {
   id_DESC
   title_ASC
   title_DESC
+  dummy_ASC
+  dummy_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -144,6 +149,7 @@ enum ChatOrderByInput {
 type ChatPreviousValues {
   id: ID!
   title: String
+  dummy: String
 }
 
 type ChatSubscriptionPayload {
@@ -187,6 +193,7 @@ input ChatSubscriptionWhereInput {
 
 input ChatUpdateInput {
   title: String
+  dummy: String
   members: UserUpdateManyInput
   messages: MessageUpdateManyWithoutChatInput
 }
@@ -201,6 +208,7 @@ input ChatUpdateOneWithoutMessagesInput {
 
 input ChatUpdateWithoutMessagesDataInput {
   title: String
+  dummy: String
   members: UserUpdateManyInput
 }
 
@@ -298,6 +306,46 @@ input ChatWhereInput {
 
   """All values not ending with the given string."""
   title_not_ends_with: String
+  dummy: String
+
+  """All values that are not equal to given value."""
+  dummy_not: String
+
+  """All values that are contained in given list."""
+  dummy_in: [String!]
+
+  """All values that are not contained in given list."""
+  dummy_not_in: [String!]
+
+  """All values less than the given value."""
+  dummy_lt: String
+
+  """All values less than or equal the given value."""
+  dummy_lte: String
+
+  """All values greater than the given value."""
+  dummy_gt: String
+
+  """All values greater than or equal the given value."""
+  dummy_gte: String
+
+  """All values containing the given string."""
+  dummy_contains: String
+
+  """All values not containing the given string."""
+  dummy_not_contains: String
+
+  """All values starting with the given string."""
+  dummy_starts_with: String
+
+  """All values not starting with the given string."""
+  dummy_not_starts_with: String
+
+  """All values ending with the given string."""
+  dummy_ends_with: String
+
+  """All values not ending with the given string."""
+  dummy_not_ends_with: String
   members_every: UserWhereInput
   members_some: UserWhereInput
   members_none: UserWhereInput
@@ -1076,6 +1124,8 @@ export type ChatOrderByInput =   'id_ASC' |
   'id_DESC' |
   'title_ASC' |
   'title_DESC' |
+  'dummy_ASC' |
+  'dummy_DESC' |
   'updatedAt_ASC' |
   'updatedAt_DESC' |
   'createdAt_ASC' |
@@ -1148,6 +1198,20 @@ export interface ChatWhereInput {
   title_not_starts_with?: String
   title_ends_with?: String
   title_not_ends_with?: String
+  dummy?: String
+  dummy_not?: String
+  dummy_in?: String[] | String
+  dummy_not_in?: String[] | String
+  dummy_lt?: String
+  dummy_lte?: String
+  dummy_gt?: String
+  dummy_gte?: String
+  dummy_contains?: String
+  dummy_not_contains?: String
+  dummy_starts_with?: String
+  dummy_not_starts_with?: String
+  dummy_ends_with?: String
+  dummy_not_ends_with?: String
   members_every?: UserWhereInput
   members_some?: UserWhereInput
   members_none?: UserWhereInput
@@ -1226,6 +1290,7 @@ export interface MessageWhereUniqueInput {
 
 export interface ChatCreateInput {
   title?: String
+  dummy?: String
   members?: UserCreateManyInput
   messages?: MessageCreateManyWithoutChatInput
 }
@@ -1246,6 +1311,7 @@ export interface UserCreateManyInput {
 
 export interface ChatUpdateWithoutMessagesDataInput {
   title?: String
+  dummy?: String
   members?: UserUpdateManyInput
 }
 
@@ -1415,12 +1481,14 @@ export interface UserUpdateManyInput {
 
 export interface ChatUpdateInput {
   title?: String
+  dummy?: String
   members?: UserUpdateManyInput
   messages?: MessageUpdateManyWithoutChatInput
 }
 
 export interface ChatCreateWithoutMessagesInput {
   title?: String
+  dummy?: String
   members?: UserCreateManyInput
 }
 
@@ -1552,6 +1620,7 @@ export interface Chat extends Node {
   title?: String
   members?: User[]
   messages?: Message[]
+  dummy?: String
 }
 
 /*
@@ -1599,6 +1668,7 @@ export interface ChatEdge {
 export interface ChatPreviousValues {
   id: ID_Output
   title?: String
+  dummy?: String
 }
 
 export interface ChatSubscriptionPayload {

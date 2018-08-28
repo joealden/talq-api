@@ -129,7 +129,7 @@ const chatMutations = {
       throw new Error("The message's content cannot be empty");
     }
 
-    return context.prisma.mutation.createMessage(
+    const newMessage = await context.prisma.mutation.createMessage(
       {
         data: {
           chat: {
@@ -147,6 +147,31 @@ const chatMutations = {
       },
       info
     );
+
+    /**
+     * NOTE:
+     * This action is required due to a current limitation of Prisma.
+     * Currently, the above createMessage mutation will not trigger an
+     * "UPDATED" event on a Chat subscription. To get around this issue,
+     * a dummy field is added to the Chat type. When an update occurs
+     * but doesn't trigger for the above reason, this property can be
+     * mutated to force an "UPDATED" event to happen. The user facing
+     * API does not change as this is not exposed directly.
+     *
+     * Refer to the following part of the prisma docs for more information:
+     * https://www.prisma.io/docs/reference/prisma-api/subscriptions-aey0vohche#relation-subscriptions
+     */
+
+    await context.prisma.mutation.updateChat({
+      where: {
+        id: args.chatId
+      },
+      data: {
+        dummy: "dummy"
+      }
+    });
+
+    return newMessage;
   }
 };
 
