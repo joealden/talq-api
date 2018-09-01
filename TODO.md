@@ -1,11 +1,20 @@
 # TODO
 
-- Implement more subscription stuff
+## Note
+
+`graphql` v14 is currently not compatible as yarn issues a warning about
+duplicate versions (I assume this is because tools that need it as a peer dep
+are currently requiring v0.13). Old back upgrading until dependent packages
+upgrade.
+
+## Now
+
+- Look into sending WebSocket traffic over wss instead of ws (not encrypted)
 
 ## Later
 
 - Enforce fields like username to be a single 'word' (no spaces allowed)
-- Look into sending WebSocket traffic over wss instead of ws (not encrypted)
+
 - Switch from graphql-yoga to apollo-server due to lack of maintainance of
   graphql-yoga (and other prisma owned libs tbh)
 - Look into orderBy: last updated (Not working as expected for chat list query)
