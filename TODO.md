@@ -4,6 +4,7 @@
 
 ## Later
 
+- Enforce fields like username to be a single 'word' (no spaces allowed)
 - Look into sending WebSocket traffic over wss instead of ws (not encrypted)
 - Switch from graphql-yoga to apollo-server due to lack of maintainance of
   graphql-yoga (and other prisma owned libs tbh)
