@@ -38,7 +38,7 @@ const Subscription = {
     }
   },
 
-  chatListUpdate: {
+  updatedChat: {
     subscribe: (_, _args, context: Context, _info) => {
       const userId = getUserId(context);
 
