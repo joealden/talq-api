@@ -23,8 +23,10 @@ const chatMutations = {
       );
     }
 
-    if (args.initialMessage === "") {
-      throw new Error("The inital message cannot be an empty string");
+    if (args.initialMessage.trim() === "") {
+      throw new Error(
+        "The inital message cannot be an empty string or a string that only contains spaces"
+      );
     }
 
     /* If changing length, change on client side as well */
