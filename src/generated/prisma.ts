@@ -198,10 +198,9 @@ input ChatUpdateInput {
   messages: MessageUpdateManyWithoutChatInput
 }
 
-input ChatUpdateOneWithoutMessagesInput {
+input ChatUpdateOneRequiredWithoutMessagesInput {
   create: ChatCreateWithoutMessagesInput
   connect: ChatWhereUniqueInput
-  delete: Boolean
   update: ChatUpdateWithoutMessagesDataInput
   upsert: ChatUpsertWithoutMessagesInput
 }
@@ -467,8 +466,8 @@ input MessageSubscriptionWhereInput {
 
 input MessageUpdateInput {
   content: String
-  chat: ChatUpdateOneWithoutMessagesInput
-  author: UserUpdateOneInput
+  chat: ChatUpdateOneRequiredWithoutMessagesInput
+  author: UserUpdateOneRequiredInput
 }
 
 input MessageUpdateManyWithoutChatInput {
@@ -482,7 +481,7 @@ input MessageUpdateManyWithoutChatInput {
 
 input MessageUpdateWithoutChatDataInput {
   content: String
-  author: UserUpdateOneInput
+  author: UserUpdateOneRequiredInput
 }
 
 input MessageUpdateWithWhereUniqueWithoutChatInput {
@@ -829,10 +828,9 @@ input UserUpdateManyInput {
   upsert: [UserUpsertWithWhereUniqueNestedInput!]
 }
 
-input UserUpdateOneInput {
+input UserUpdateOneRequiredInput {
   create: UserCreateInput
   connect: UserWhereUniqueInput
-  delete: Boolean
   update: UserUpdateDataInput
   upsert: UserUpsertNestedInput
 }
@@ -1230,10 +1228,9 @@ export interface UserUpdateWithWhereUniqueNestedInput {
   data: UserUpdateDataInput
 }
 
-export interface UserUpdateOneInput {
+export interface UserUpdateOneRequiredInput {
   create?: UserCreateInput
   connect?: UserWhereUniqueInput
-  delete?: Boolean
   update?: UserUpdateDataInput
   upsert?: UserUpsertNestedInput
 }
@@ -1245,7 +1242,7 @@ export interface ChatCreateOneWithoutMessagesInput {
 
 export interface MessageUpdateWithoutChatDataInput {
   content?: String
-  author?: UserUpdateOneInput
+  author?: UserUpdateOneRequiredInput
 }
 
 export interface MessageSubscriptionWhereInput {
@@ -1326,8 +1323,8 @@ export interface UserCreateInput {
 
 export interface MessageUpdateInput {
   content?: String
-  chat?: ChatUpdateOneWithoutMessagesInput
-  author?: UserUpdateOneInput
+  chat?: ChatUpdateOneRequiredWithoutMessagesInput
+  author?: UserUpdateOneRequiredInput
 }
 
 export interface MessageCreateManyWithoutChatInput {
@@ -1462,10 +1459,9 @@ export interface MessageCreateInput {
   author: UserCreateOneInput
 }
 
-export interface ChatUpdateOneWithoutMessagesInput {
+export interface ChatUpdateOneRequiredWithoutMessagesInput {
   create?: ChatCreateWithoutMessagesInput
   connect?: ChatWhereUniqueInput
-  delete?: Boolean
   update?: ChatUpdateWithoutMessagesDataInput
   upsert?: ChatUpsertWithoutMessagesInput
 }
