@@ -1,6 +1,7 @@
 {
   "name": "talq-api",
   "description": "The API for Talq built with Prisma and graphql-yoga",
+  "author": "Joe Alden <me@joealden.com> (joealden.com)",
   "version": "0.1.0",
   "license": "MIT",
   "private": true,
