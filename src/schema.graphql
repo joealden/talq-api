@@ -1,5 +1,3 @@
-# import MessageOrderByInput from 'generated/prisma.graphql'
-
 # Restrict what client can see about the User type
 type User {
   email: String!
@@ -20,7 +18,7 @@ type Chat {
   id: ID!
   title: String
   members: [PublicUser!]!
-  messages(first: Int, orderBy: MessageOrderByInput): [Message!]!
+  messages(last: Int): [Message!]!
 }
 
 # Needed otherwise graphql-yoga complains about missing type
@@ -48,7 +46,6 @@ type Query {
 }
 
 type Subscription {
-  newChatMessage(chatId: ID!): Message
   updatedChat: Chat
 }
 
