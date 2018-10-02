@@ -10,11 +10,11 @@ upgrade.
 ## Now
 
 - Error: Cannot return null for non-nullable field Query.user
+- Look into the `Variable "$chatId" of required type "ID!" was not provided.`
+  error that happens (most likely client side issue).
 
 ## Later
 
-- Look into the `Variable "$chatId" of required type "ID!" was not provided.`
-  error that happens (most likely client side issue).
 - Enforce fields like username to be a single 'word' (no spaces allowed)
 - Switch from graphql-yoga to apollo-server due to lack of maintainance of
   graphql-yoga (and other prisma owned libs tbh)
