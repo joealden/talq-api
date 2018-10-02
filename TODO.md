@@ -9,7 +9,7 @@ upgrade.
 
 ## Now
 
-- Look into sending WebSocket traffic over wss instead of ws (not encrypted)
+- Error: Cannot return null for non-nullable field Query.user
 
 ## Later
 

@@ -1,11 +1,17 @@
 {
   "name": "talq-api",
   "alias": "talq-api.joealden.com",
-  "dotenv": true,
   "scale": {
     "bru1": {
       "min": 1,
       "max": 1
     }
+  },
+  "env": {
+    "APP_PORT": "8888",
+    "FRONTEND_URL": "https://talq.joealden.com",
+    "PRISMA_ENDPOINT": "https://eu1.prisma.sh/joe-alden-e4ab2a/talq-api/prod",
+    "PRISMA_SECRET": "@talq-api-prisma-secret",
+    "APP_SECRET": "@talq-api-app-secret"
   }
 }
