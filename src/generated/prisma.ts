@@ -367,8 +367,8 @@ scalar Long
 
 type Message implements Node {
   id: ID!
-  chat(where: ChatWhereInput): Chat!
-  author(where: UserWhereInput): User!
+  chat: Chat!
+  author: User!
   createdAt: DateTime!
   content: String!
 }

@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/joe-alden-e4ab2a/talq-api/dev
-# timestamp: Wed Sep 12 2018 09:34:01 GMT+0100 (BST)
+# timestamp: Tue Oct 02 2018 13:27:09 GMT+0100 (BST)
 
 type AggregateChat {
   count: Int!
@@ -297,8 +297,8 @@ scalar Long
 
 type Message implements Node {
   id: ID!
-  chat(where: ChatWhereInput): Chat!
-  author(where: UserWhereInput): User!
+  chat: Chat!
+  author: User!
   createdAt: DateTime!
   content: String!
 }
