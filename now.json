@@ -1,0 +1,11 @@
+{
+  "name": "talq-api",
+  "alias": "talq-api.joealden.com",
+  "dotenv": true,
+  "scale": {
+    "bru1": {
+      "min": 1,
+      "max": 1
+    }
+  }
+}

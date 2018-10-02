@@ -3,13 +3,13 @@ projects:
     schemaPath: src/schema.graphql
     extensions:
       endpoints:
-        default: http://localhost:4000
+        default: https://talq-api.joealden.com
   prisma:
     schemaPath: src/generated/prisma.graphql
     extensions:
       prisma: prisma/prisma.yml
       codegen:
-      - generator: prisma-binding
-        language: typescript
-        output:
-          binding: src/generated/prisma.ts
+        - generator: prisma-binding
+          language: typescript
+          output:
+            binding: src/generated/prisma.ts
