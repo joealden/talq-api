@@ -2,12 +2,9 @@
 import { GraphQLServer, Options } from "@joealden/graphql-yoga";
 
 import { Prisma } from "prisma-binding";
-import * as dotenv from "dotenv";
 import * as cookieParser from "cookie-parser";
 
 import resolvers from "./resolvers";
-
-dotenv.config();
 
 const server = new GraphQLServer({
   typeDefs: "src/schema.graphql",
