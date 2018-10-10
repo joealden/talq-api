@@ -46,7 +46,7 @@ const getTokenCookie = (context: Context) => {
 
 class AuthError extends Error {
   constructor() {
-    super("Not authorized");
+    super("not authorized");
   }
 }
 
