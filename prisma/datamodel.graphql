@@ -5,6 +5,7 @@ type User {
   firstName: String!
   lastName: String!
   password: String!
+  # TODO, change because user can have no friends
   friends: [User!]!
 }
 
