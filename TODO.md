@@ -1,12 +1,5 @@
 # TODO
 
-## Note
-
-`graphql` v14 is currently not compatible as yarn issues a warning about
-duplicate versions (I assume this is because tools that need it as a peer dep
-are currently requiring v0.13). Old back upgrading until dependent packages
-upgrade.
-
 ## Now
 
 - Error: Cannot return null for non-nullable field Query.user
